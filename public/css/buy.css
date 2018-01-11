@@ -1,0 +1,262 @@
+.nav-title {
+    border-top: 1px solid #e0e0e0;
+    box-shadow: 0 5px 5px 0 #e0e0e0;
+    position: relative;
+}
+.header-title {
+    height: 60px;
+    line-height: 60px;
+    
+}
+.header-title-left {
+    font-size: 18px;
+    color: #212121;
+}
+.header-title-right {
+    font-size: 14px;
+    
+}
+.header-title-right a {
+    color: #616161;
+}
+.separator {
+    color: #e0e0e0;
+    margin: 0 .25em
+}
+
+
+.nav-login {
+    text-align: center;
+    font-size: 14px;
+    height: 48px;
+    line-height: 48px;
+    color: #333;
+    background: #f7f7f7;
+}
+.nav-login a {
+    color: #ff6700;
+    margin-left: 25px;
+
+}
+.nav-login i {
+    color: #b5b5b5;
+    font-size: 18px;
+    margin-left: 18px;
+}
+
+.slider-left {
+    width: 50%;
+}
+.product-choose {
+    font-size: 14px;
+    width: 50%;
+}
+.pro-title {
+    font-size: 24px;
+    color: #212121;
+}
+.show-product {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    
+}
+.show-product h2 {
+    font-size: 18px;
+    color: #333;
+    font-weight: normal;
+}
+.activty {
+    color: rgb(255, 74, 0);
+    padding-top: 8px;
+}
+.pro-describe {
+    color: #b0b0b0;
+}
+.pro-price {
+    font-size: 18px;
+    display: block;
+    color:#ff6700;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 12px 0 20px;
+}
+.pro-gift {
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+.pro-gift li {
+    margin-bottom: 5px;
+    color: #333;
+}
+.pro-gift li span {
+    display: inline-block;
+    width: 80px;
+    padding: 2px 0;
+    text-align: center;
+    background: #ff6700;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.address-box {
+    margin-top: 40px;
+    margin-bottom: 40px;
+
+}
+.user-default-address {
+    background: #fafafa;
+    border:1px solid #e0e0e0;
+    padding: 30px 40px 30px 32px;
+}
+.address-info {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333;
+}
+.address-info .item{
+    margin-right: 14px;
+}
+.icon-map {
+    font-size: 20px;
+    color: #999;
+}
+.product-status {
+    padding-left: 25px;
+}
+
+.pro-type li,.pro-color li {
+    text-align: left;
+    padding: 0 27px;
+    line-height: 42px;
+    font-size: 16px;
+    margin-left: 6px;
+    margin-top: 15px;
+    height: 42px;
+    border: 1px solid #e0e0e0;
+    width: 300px;
+    box-sizing: border-box;
+    margin-bottom: 28px;
+}
+.safe-title {
+    margin-bottom: 15px;
+}
+.safety span {
+    font-size: 18px;
+    color: #333;
+}
+.safety a {
+    color: #ff6700;
+    font-size: 14px;
+    float: right;
+}
+
+.safe-choose {
+    cursor: pointer;
+    padding: 30px 0;
+    border: 1px solid #e0e0e0;
+    position: relative;
+}
+.safe-select {
+    width: 26px;
+    height: 26px;
+    border: 1px solid #b0b0b0;
+    border-radius: 50%;
+    margin-left: 30px;
+    margin-right: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    text-align: center;
+    background: #ff6700;
+    border-color: #ff6700;
+}
+.safe-select i {
+    color: #fff;
+    font-size: 16px;
+}
+.safe-choose img {
+    margin-right: 15px;
+    margin-left: 30px;
+    vertical-align: middle;
+}
+.safe-choose div {
+    width: 340px;
+    overflow: hidden;
+}
+.safe-choose div h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: normal;
+}
+.safe-choose div p {
+    font-size: 14px;
+    height: 18px;
+    color: #b0b0b0;
+    margin-top: 10px;
+}
+.safe-choose .safe-price {
+    position: absolute;
+    right: 20px;
+    bottom: 28px;
+    color: #757575;
+    font-size: 14px;
+}
+
+.pro-list {
+    background: #f9f9fa;
+    padding: 30px;
+    margin-bottom: 30px;
+    color: #333;
+    margin-top: 30px;
+}
+.pro-list p {
+    color: #616161;
+    line-height: 30px;
+}
+.pro-list .pro-li-total {
+    color: #ff6700;
+    font-size: 24px;
+    padding-top: 20px;
+}
+.shop-bar-btn {
+    background: #ff6700;
+    border: 0;
+    color: #fff;
+    width: 300px;
+    height: 52px;
+    line-height: 52px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px 0 20px 0;
+}
+.tuikuan {
+    color: #b0b0b0;
+    font-size: 14px;
+}
+.tuikuan .gou {
+    color: #83c44e;
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.product-detail {
+    padding-bottom: 50px;
+    background: #f5f5f5;
+}
+.product-detail h2 {
+    font-size: 22px;
+    margin: 1em 0;
+    color: #333;
+    font-weight: normal;
+}
+.show-detail {
+    font-size: 16px;
+    line-height: 34px;
+    color: #424242;
+}
+.show-detail i {
+    font-size: 24px;
+    margin-left: 4px;
+    color: #b0b0b0;
+    vertical-align: middle;
+}

@@ -1,0 +1,471 @@
+.mini-header {
+    font-size: 12px;
+    border-bottom: 2px solid #ff6700;
+    background: #fff;
+    color: #b0b0b0;
+    height: 100px;
+}
+.header-container {
+    width: 1226px;
+    margin: 0 auto;
+   
+}
+.header-logo {
+    width: 93px;
+    
+}
+.header-logo .logo {
+    width: 48px;
+    height: 48px;
+    background: #ff6700;
+    margin-top: 26px;
+    position: relative;
+}
+.header-logo .logo::before {
+    background: url("../images/mi-logo.png") no-repeat 50% 50%;
+    opacity: 1;
+    transform:translate3d(0,0,0)
+}
+.header-logo .logo::after {
+    background: url("../images/mi-home.png") no-repeat 50% 50%;
+    opacity: 0;
+    margin-left: -55px;
+    transform: translate3d(0,0,0);
+}
+.header-logo .logo:before,.header-logo .logo:after {
+    display: block;
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    content: '';
+    transform-origin: 50% 50%;
+    transition: all .2s;
+}
+.header-title {
+    font-size: 28px;
+    line-height: 48px;
+    font-weight: normal;
+    color: #424242;
+    margin: 0;
+    margin-top: 26px;
+}
+.topbar {
+    margin-top: 30px;
+    line-height: 40px;
+    height: 40px;
+    color: #666;
+}
+.user-name i {
+    font-size: 18px;
+    
+    
+}
+.sep {
+    color: #e0e0e0;
+
+}
+
+
+/* 主体 */
+.page-mian {
+    padding-top: 38px;
+    padding-bottom: 38px;
+    background: #f5f5f5;
+}
+.page-mian .page-container{
+    width: 1226px;
+    margin: 0 auto;
+}
+.cart-empty {
+    height: 273px;
+    padding-left: 558px;
+    margin: 65px 0 130px;
+    background: url("../images/cart-empty.png") no-repeat 124px 0;
+    color: #b0b0b0;
+    overflow: hidden;
+}
+.cart-empty h2 {
+    margin: 70px 0 15px;
+    font-size: 36px;
+}
+.cart-empty .btn {
+    display: inline-block;
+    width: 170px;
+    height: 48px;
+    line-height: 48px;
+    background: #ff6700;
+    border-color: #ff6700;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    margin:0;
+}
+.recommend-title {
+    position: relative;
+    margin:0;
+    height: 50px;
+    font-size: 30px;
+    font-weight: normal;
+    color: #757575;
+    border-top: 1px solid #e0e0e0;
+
+}
+.recommend-title span {
+    position: absolute;
+    top: -20px;
+    left: 372px;
+    height: 40px;
+    width: 482px;
+    line-height: 40px;
+    text-align: center;
+    display: block;
+    background: #f5f5f5;
+}
+/* 购物车不为空 */
+.car-header {
+    height: 70px;
+    line-height: 70px;
+    padding-right: 26px;
+    color: #424242;
+}
+.carList {
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 38px;
+    background: #fff;
+}
+ .allcheck {
+    width: 110px;
+}
+.allcheck i {
+    color: #fff;
+    font-size: 12px; 
+}
+.checkbox {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    margin-left: 24px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    background: #ff6700;
+    margin-right: 15px;
+}
+ .car-image  {
+    display: block;
+    width: 120px;
+    height: 70px;
+    line-height: 70px;
+}
+ .car-name {
+    width: 380px;
+}
+ .car-value {
+    width: 75px;
+    margin-right: 84px;
+    text-align: right;
+}
+ .car-num {
+    width: 150px;
+    text-align: center;
+}
+ .car-total {
+    width: 120px;
+    margin-right: 81px;
+    text-align: right;
+}
+ .car-action {
+    width: 80px;
+    text-align: center;
+}
+.car-item {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 1px solid #e0e0e0;
+    color: #424242;
+}
+.car-item div {
+    height: 86px;
+    line-height: 86px;
+}
+.car-item .car-num {
+    position: relative;
+}
+.car-name a {
+    font-size: 18px;
+    color: #424242;
+}
+.car-value span {
+    font-size: 16px;
+}
+
+.car-num .num-txt {
+    font-size: 16px;
+    display: inline-block;
+    width: 72px;
+    height: 38px;
+    line-height: 38px;
+}
+
+.car-num i {
+    color: #757575;
+    font-size: 12px;
+}
+.car-num .num-down,.car-num .num-up {
+    display: inline-block;
+    width: 30px;
+    height: 38px;
+    line-height: 38px;
+    color: #757575;
+}
+.car-item .car-num {
+    height: 38px;
+    border: 1px solid #e0e0e0;
+    margin-top: 24px;
+    line-height: 38px;
+}
+
+.car-total span {
+    font-size: 16px;
+    color: #ff6700;
+}
+
+.car-action i {
+    color: #757575;
+    font-style: "normal"
+}
+.car-action a {
+    display: inline-block;
+    line-height: 24px;
+    width: 24px;
+    height: 24px;
+    color: #fff;
+    border-radius: 12px;
+}
+.allmoney {
+    margin-bottom: 40px;
+    height: 50px;
+    text-align: right;
+    background: #fff;
+    line-height: 50px;
+}
+.left-section {
+    font-size: 14px;
+}
+.left-section a {
+    margin-left: 32px;
+    text-decoration: none;
+
+}
+.left-section a:hover {
+    color: #ff6700;
+}
+.sep {
+    display: inline-block;
+    width: 0;
+    height: 17px;
+    border-right:1px solid #e0e0e0;
+}
+.total-txt {
+    font-size: 14px;
+    color: #ff6700;
+}
+.total-txt span {
+    color: #ff6700;
+    font-size: 30px;
+}
+.right-section {
+    height: 50px;
+    padding: 0;
+    margin: 0;
+}
+.right-section button {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 18px;
+    margin-left: 50px;
+    border: 1px solid #ff6700;
+    background: #ff6700;
+    color: #fff;
+    vertical-align: top;
+}
+.yel {
+    color: #ff6700;
+}
+
+@font-face {
+    font-family: 'iconfont';
+    src: url('../iconfont/iconfont.eot');
+    src: url('../iconfont/iconfont.eot?#iefix') format('embedded-opentype'),
+    url('../iconfont/iconfont.woff') format('woff'),
+    url('../iconfont/iconfont.ttf') format('truetype'),
+    url('../iconfont/iconfont.svg#iconfont') format('svg');
+}
+.iconfont{
+    font-family:"iconfont" !important;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+
+
+
+
+
+/*footer*/
+.footer{
+    min-width:1200px;
+    min-height:400px;
+}
+.site-footer .footer-service {
+    padding: 27px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+.site-footer .list-service {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.site-footer .list-service li:first-child {
+    border-left: 0;
+}
+.site-footer .list-service li {
+    float: left;
+    width: 19.8%;
+    height: 25px;
+    border-left: 1px solid #e0e0e0;
+    font-size: 16px;
+    line-height: 25px;
+    text-align: center;
+}
+.site-footer .list-service a {
+    color: #616161;
+    -webkit-transition: color .2s;
+    transition: color .2s;
+}
+.site-footer .list-service span {
+    margin-right: 6px;
+    font-size: 24px;
+    line-height: 24px;
+    vertical-align: -4px;
+}
+.site-footer .footer-links .col-contact {
+    float: right;
+    width: 251px;
+    height: 112px;
+    border-left: 1px solid #e0e0e0;
+    text-align: center;
+    color: #616161;
+}
+
+.site-footer .footer-links {
+    padding: 40px 0;
+}
+.site-footer .footer-links .col-links {
+    float: left;
+    width: 160px;
+    margin: 0;
+}
+.site-footer .footer-links .col-links dt {
+    margin: -1px 0 26px;
+    font-size: 14px;
+    line-height: 1.25;
+    color: #424242;
+    font-weight: normal;
+}
+.site-footer .footer-links .col-links dt:hover{color: #ff6700;cursor: pointer;}
+.site-footer .footer-links .col-links dd {
+    margin: 10px 0 0;
+    font-size: 12px;
+}
+.site-footer .footer-links .col-links a {
+    color: #757575;
+}
+.site-footer .footer-links .col-links a:hover {
+    color: #ff6700;
+}
+.site-footer .footer-links .col-contact .phone {
+    margin: 0 0 5px;
+    font-size: 22px;
+    line-height: 1;
+    color: #ff6700;
+}
+.list-service a:hover{color: #ff6700;}
+.site-info {
+    padding: 30px 0;
+    font-size: 12px;
+    background: #fafafa;
+}
+.site-info {
+    padding: 30px 0;
+    font-size: 12px;
+    background: #fafafa;
+}
+.site-info .logo2 {
+    float: left;
+    width: 57px;
+    height: 57px;
+    margin-right: 10px;
+}
+.site-info .info-text {
+    float: left;
+    color: #b0b0b0;
+}
+.site-info .info-text p {
+    margin: 0;
+    line-height: 18px;
+}
+.site-info .info-text .sites a {
+    color: #757575;
+}
+.sep, .ndash {
+    margin: 0 .25em;
+    font-family: sans-serif;
+}
+.site-info .info-links a{
+    float: right;
+    height: 28px;
+    margin: 4px 0 0;
+}
+.site-info .info-links img {
+    width: auto;
+    height: 28px;
+    margin-left: 7px;
+}
+.site-info .info-text .sites a:hover {
+color:#ff6700;
+}
+.site-info .slogan {
+    margin: 80px auto 0;
+    width: 267px;
+    height: 19px;
+    background: url(../img/slogan2016.png) no-repeat center 0;
+}
+.btn-small {
+    background: #fff;
+    color: #ff6700;
+    width: 118px;
+    height: 28px;
+    font-size: 12px;
+    border: 1px solid #ff6700;
+    padding: 8px 16px;
+    margin-top: 35px;
+    line-height: 50px;
+}
+.btn-small:hover {
+    color: #fff;
+    background-color: #f25807;
+    border-color: #f25807;
+}

@@ -1,0 +1,298 @@
+body {
+    background: #f9f9f9;
+    color: #666;
+}
+.wrapper {
+    width: 100%;
+    
+}
+.main-container {
+    background: #fff;
+    padding: 34px 34px 30px;
+    min-height: 400px;
+    width: 854px;
+    margin: 0 auto;
+}
+.logo {
+    padding-bottom: 40px;
+}
+.mi-logo {
+    width: 49px;
+    height: 48px;
+    margin: 0 auto;
+    display: block;
+    cursor: default;
+    background-image: url('https://account.xiaomi.com/static/res/28f08d0/account-static/respassport/acc-2014/img/milogo.png');
+}
+.reg-box,.reg-box-2,.reg-box-3 {
+    width: 332px;
+    padding: 30px 0;
+    line-height: 20px;
+    margin: 0 auto;
+    font-size: 14px;
+}
+.reg-box h4 {
+    padding-bottom: 5px;
+    color: #333;
+    font-weight: normal;
+    font-size: 14px;
+}
+.title {
+    font-size: 30px;
+    font-weight: normal;
+    color: #333;
+    line-height: 1.5;
+    text-align: center;
+}
+.nation {
+    height: 40px;
+    padding-left: 14px;
+    line-height: 40px;
+    border: 1px solid #e8e8e8;
+    color: #555;
+    cursor: pointer;
+    font-size: 14px;
+}
+.nation-select {
+    width: 40px;
+    height: 40px;
+}
+.nation-content {
+    width: 276px;
+    border-right: 1px solid #e8e8e8;
+}
+.icon-cirarr {
+    float: right;
+    background: url(https://account.xiaomi.com/static/res/0eeaaed/passport/oauth/images/icon_user.png);
+    width: 16px;
+    height: 16px;
+    margin: 11px 12px 0 12px;
+}
+.nation-container,.tel-container {
+    background: #fff;
+    height: 270px;
+    line-height: 30px;
+    border: 1px solid #e8e8e8;
+    border-top: 0;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: absolute;
+    z-index: 1;
+    width: 332px;
+}
+.search-code {
+    padding: 10px;
+}
+.search-code-input {
+    width: 274px;
+    height: 34px;
+    line-height: 34px;
+    padding: 5px 10px 5px 10px;
+    display: block;
+    border: 1px solid #e0e0e0;
+}
+.nation-container .header,.tel-container .header {
+    background: #fcdecc;
+    padding-left: 10px;
+    margin-bottom: 6px;
+    line-height: 30px;
+    color: #ef5b00;
+}
+.nation-container li,.tel-container li{
+    padding: 0 10px;
+    line-height: 39px;
+    color: #000;
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+    font-size: 14px;
+    width: 313px;
+}
+
+.nation-tips {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+.tel-box>span{
+    display: inline-block;
+    width: 74px;
+    text-align: center;
+    padding: 0 9px;
+    height: 40px;
+    line-height: 40px;
+    vertical-align: middle;
+    border: 1px solid #e8e8e8;
+    color: #555;
+    cursor: pointer;
+    margin:0;
+    font-size: 14px;
+}
+.icon-arrow {
+    float: left;
+    margin: 17px 0 0 10px;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #9d9d9d transparent transparent transparent;
+}
+.tel-box input {
+    width: 256px;
+    height: 40px;
+    line-height: 40px;
+    padding: 10px;
+    color: #333;
+    border: 1px solid #e8e8e8;
+    border-left: 0;
+    margin: 0;
+    font-size: 14px;
+}
+.tel-container .record-code {
+    float: right;
+    margin-right: 15px;
+    color: #9d9d9d;
+}
+.icon-error {
+    font-size: 16px;
+    color: #ff6700;
+}
+.error-msg {
+    font-size: 14px;
+    color: #ff6700;
+}
+.msg-box,.msg-type-box,.confirm-msg-box {
+    margin-top: 15px;
+    display: none;
+}
+.reg-btn {
+    background: #ff6700;
+    margin-top: 15px;
+    border: 1px solid rgba(186,186,186,0.3);
+    color: #fff;
+    width: 330px;
+    height: 42px;
+    line-height:  42px;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+.msg {
+    margin-top: 10px;
+    color: #9d9d9d;
+    font-size: 14px;
+}
+.msg a {
+    color: #333;
+    font-weight: bold;
+}
+.address-place {
+    color: #ff6700;
+}
+.res-msg,.sec-p{
+    padding-bottom: 10px;
+}
+.inputconfirm {
+    margin-bottom: 15px;
+}
+.inputconfirm input {
+    width: 210px;
+    max-width: 260px;
+    height: 40px; 
+    line-height: 34px;
+    padding: 10px;
+    border: 1px solid #e8e8e8;
+    vertical-align: bottom;
+}
+.inputconfirm button {
+    padding: 0 6px;
+    background: #fff;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #e8e8e8;
+    margin-left: 10px;
+}
+.help-txt {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.reg-box-2>button {
+    background-color: #ff6700;
+    margin-top: 15px;
+    border: 1px solid rgba(186,186,186,0.3);
+    color: #fff;
+    width: 330px;
+    height: 42px;
+    margin: 0 auto;
+    line-height: 42px;
+    text-align: center;
+    font-size: 14px;
+    display: block;
+    cursor: pointer;
+    overflow: hidden;
+}
+.reg-box-2 .return-btn {
+    background: #fff;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    color: #7c7c7c;
+}
+.reg-box-3 h4 {
+    font-size: 14px;
+    color: #666;
+    font-weight: bold;
+    line-height: 20px;
+}
+.last-tel span {
+    color: #ff6700;
+}
+.reg-box-3 input {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    border: 1px solid #e8e8e8;
+    margin-top: 15px;
+    padding: 10px;
+}
+.msg-last-box {
+    margin-top: 15px;
+}
+.reg-box-3 button {
+    background: #ff6700;
+    margin-top: 15px;
+    border: 1px solid rgba(186,186,186,0.3);
+    color: #fff;
+    width: 330px;
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.footer {
+    color: #9d9d9d;
+    text-align: center;
+    height: 80px;
+}
+.footer-lang {
+    margin: 0 auto;
+    text-align: center;
+}
+.footer-lang li {
+    display: inline-block;
+}
+.footer-lang a {
+    color: #333;
+    padding: 0 10px;
+    text-decoration: none;
+}
+.footer-copy {
+    padding: 10px;
+    color: #9d9d9d;
+    font-size: 14px;
+}
+.footer-copy img {
+    display: inline-block;
+}
