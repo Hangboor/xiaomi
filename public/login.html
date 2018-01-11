@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/iconfont.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <title>小米账号 - 登录</title>
+    <style>
+        .active {
+            border: 1px solid #f56600 !important;
+        }
+        .head {
+            width: 100%;
+            height: 100px;
+            padding: 0;
+            margin: 0;
+        }
+        .h-container {
+            width: 1130px;
+            height: 98px;
+            margin: 0 auto;
+            margin-top: 0;
+        }
+        .logo {
+            height: 98px;
+            width: 200px;
+            background-image: url(./images/mistore_logo.png);
+            background-repeat: no-repeat;
+        }
+        .logo a {
+            display: block;
+            float: left;
+            width: 200px;
+            height: 98px;
+        }
+        .content {
+            width: 100%;
+            height: 588px;
+            background-image: url("./images/523923ee3d985386d832e082980e4de9.jpg");
+            background-position: top center;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    
+    <div class="head">
+        <div class="h-container">
+            <div class="logo">
+                <a href="./index.html"></a>
+            </div>
+        </div>
+    </div>
+    <div class="login-box">
+    <div class="content">
+        
+    </div>
+    
+        <div class="login-contentBox">
+            <div class="center-box">
+
+            
+            <div class="navtabs">
+                <a href="javascript:void(0)" class="now navtab-link">账号登录</a>
+                <span class="line"></span>
+                <a href="javascript:void(0)" class="navtab-link">扫码登录</a>
+            </div>
+            <input type="text" class="input-user" placeholder="邮箱/手机号码/小米ID" v-model="user" v-bind:class="{active:msgUser}" @keydown="showMsg">
+            <input type="password" class="pwd" placeholder="密码" v-model="password" v-bind:class="{active:msgPass}" @keydown="showMsg">
+            <div  style="display:block;color:#f56600;padding-left:36px;" v-show="msgUser">
+                    <i class="icon-error fa fa-exclamation-circle"></i>
+                    <span class="error-msg">请输入账号</span>
+            </div>
+            <div  style="display:block;color:#f56600;padding-left:36px;" v-show="msgPass">
+                    <i class="icon-error fa fa-exclamation-circle"></i>
+                    <span class="error-msg">请输入密码</span>
+            </div>
+            <button class="login-btn" @click="loginNow">登录</button>
+            <div class="other_login_type clear">
+                <div class="reg-page-wripe clear">
+                    <div class="reg-page fr">
+                        <a href="./register.html">立即注册</a>
+                        <span>|</span>
+                        <a href="#">忘记密码?</a>
+                    </div>
+                </div>
+                <div class="bottom-choose-type">
+                    <h4>其他方式登录</h4>
+                </div>
+                <div class="other-type-links">
+                    <a href="#">
+                        <i class="fa fa-qq "></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-weibo "></i>
+                    </a>
+                    <a href="#">
+                            <i class="iconfont icon-zhifubao "></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa fa-weixin "></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    <script src="./js/vue.js"></script>
+    <script src="./js/vue-resource.js"></script>
+    <script>
+        new Vue({
+            el: ".page",
+            data: {
+                user: '',
+                password: '',
+                msgPass: false,
+                msgUser: false
+            },
+            methods: {
+                loginNow: function() {
+                    //console.log('user',this.user)
+                    //console.log('password',this.password)
+                    if(!this.user) {
+                        this.msgUser = true
+                        return
+                    }else {
+                        this.msgUser = false
+                    }
+                    if(!this.password) {
+                        this.msgPass = true
+                        return
+                    }else {
+                        this.msgPass = false
+                    }
+
+                    var userReg = /^1[3|4|5|8][0-9]\d{4,8}$/g
+                    var passReg = /^[a-zA-Z]{1}([a-zA-Z0-9]|[._]){4,19}$/g
+                    //console.log(this.password.match(passReg))
+                    var userConfirm = this.user.match(userReg)
+                    var passConfirm = this.password.match(passReg)
+                    if(!userConfirm || !passConfirm){
+                        alert("请检查用户名,密码输入是否正确")
+                        return
+                    }else {
+                        this.$http.post("/login",{
+                            user: this.user,
+                            password: this.password
+                        }).then(function(res) {
+                            //console.log(res.body)
+                            if(res.body.errno === 1) {
+                                //console.log(res.body.data)
+                                sessionStorage.setItem('isLogin','true')
+                                sessionStorage.setItem('showName',res.body.data)
+                                window.location="/index.html";
+                            }
+                            if(res.body.errno === 0) {
+                                alert(res.body.msg)
+                            }
+                        })
+                    }
+                },
+                showMsg: function() {
+                    //console.log(this.user,this.password)
+                    if(this.user) {
+                        this.msgUser = false
+                        
+                    }
+                    if(this.password) {
+                        this.msgPass = false
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

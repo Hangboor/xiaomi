@@ -1,0 +1,3325 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>小米商城 - 小米MIX 2、红米Note 5A、小米Note 3、小米笔记本官方网站</title>
+<link rel="stylesheet" href="./css/font-awesome.min.css">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/iconfont2.css">
+<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/buy.css">
+<style>
+    .boractive {
+        border: 1px solid #ff6700 !important;
+    }
+    .category {
+        position: absolute;
+        top: 260px;
+        left: 61.5px;
+        z-index: 20;
+    }
+
+    .nav .otherpage {
+        left: 180px;
+    }
+
+    .allproduct {
+        font-size: 16px;
+        line-height: 98px;
+        color: #333;
+        width: 96px;
+        margin-left: 80px;
+        height: 100px;
+    }
+
+    .bigBox .theSideBar {
+        border: 1px solid #ff6700;
+        color: #333;
+        background: white;
+        box-sizing: border-box;
+        display: none;
+    }
+
+    .bigBox .mainSideBar {
+        display: block !important;
+    }
+
+    .theSideBar .category-item>a {
+        color: #333;
+    }
+
+    .theSideBar .category-item .children {
+        margin-left: 1px;
+    }
+
+    .pinjiaNum {
+        margin: 0 10px;
+        font-size: 12px;
+        text-align: center;
+        color: #b0b0b0;
+    }
+</style>
+</head>
+
+<body>
+    <div class="bigBox">
+
+        <!--最顶部广告-->
+        <div class="site-bn-bar">
+            <a class="site-bn-bar-link" href="https://www.mi.com/a/h/2820.html?client_id=180100041086&amp;masid=17409.0158" data-stat-id="首页顶通广告位"
+                target="_blank">
+        </a>
+        </div>
+        <!--个人信息headerTop-->
+        <div class="header-top">
+            <div class="container clear" >
+                <div class="fl">
+                    <ul class="clear">
+                        <li class="fl navbar-nav" style="padding: 0"><a href="javascript:">小米商城 </a> <span>|</span></li>
+                        <li class="fl navbar-nav"><a href="javascript:">MIUI </a><span>|</span></li>
+                        <li class="fl navbar-nav"><a href="javascript:">米聊 </a> <span>|</span></li>
+                        <li class="fl navbar-nav"><a href="javascript:">游戏 </a><span>|</span></li>
+                        <li class="fl navbar-nav"><a href="javascript:">多看阅读 </a><span>|</span></li>
+                        <li class="fl navbar-nav"><a href="javascript:">云服务 </a><span>|</span></li>
+                        <li class="fl navbar-nav"><a href="javascript:">金融 </a><span>|</span></li>
+                        <li class="fl navbar-nav"><a href="javascript:">米币 </a><span>|</span></li>
+                        <li class="fl navbar-nav"><a href="javascript:">小米商城手机版 </a><span>|</span></li>
+                        <li class="fl navbar-nav"><a href="javascript:">问题反馈 </a><span>|</span></li>
+                        <li class="fl navbar-nav"><a href="javascript:">Select Region</a></li>
+                    </ul>
+                </div>
+                <div class="fr" style="position:relative">
+                   
+                        <a href="./login.html" class="register" v-show="!isLogin">登陆</a>
+                        <span v-show="!isLogin">|</span>
+                        <a href="./register.html" class="login" v-show="!isLogin">注册</a>
+                        <span v-show="!isLogin">|</span>
+                    <span class="user-msg">
+                        <a href="#" v-show="isLogin"  class="user-name ">
+                            {{name}}
+                            <i class="fa fa-chevron-down"></i>
+                        </a>
+                        <ul class="user-msg-list " style="display:none;">
+                            <li><a href="">个人中心</a></li>
+                            <li><a href="">评价晒单</a></li>
+                            <li><a href="">我的喜欢</a></li>
+                            <li><a href="">小米账户</a></li>
+                            <li><a href="javascript:void(0)" @click="outerLogin">退出登录</a></li>
+                        </ul>
+                    </span>
+                </span style="display:block">
+                    <a href="javascript:" class="tz" >消息通知</a>
+                    <a href="" class="tz">我的订单</a>
+                    <a class="cart" href="./shoppingCar.html" :class="{haspro:hasproduct}">
+                        <i class="iconfont cart-mini">&#xe621;</i> 购物车（<span v-text="allproduct"></span>）
+                    <div class="cart-menu" style="display:none">
+                        <span v-show="!hasproduct">购物车中还没有商品，赶紧选购吧！</span>
+                        <ul v-show="hasproduct" class="shopcarmenu">
+                            <li v-for="item in shopCarList">
+                                
+                                <img :src="item.img" alt="" width="60px" height="60px">
+                               
+                                
+                                <p v-text="item.product" class="car-product"></p>
+                                <span class="car-right">
+                                    <span v-text="item.price + '元'" ></span>
+                                    <span >×</span>
+                                    <span v-text="item.num"></span>
+                                </span>
+                                
+                                <i class="fa fa-close car-right car-icon" ></i>
+                            </li>
+                            <li>
+                                <div class="car-menu-left">
+                                    <p style="line-height:15px;" class="goodsnum">共
+                                        <span v-text="allproduct"></span>件商品
+                                    </p>
+                                    <p style="line-height:25px;" class="goodsprice">
+                                        <span v-text="allprice"></span>
+                                        <span style="font-size: 14px;">元</span>
+                                    </p>
+                                </div>
+                                <div class="car-menu-right ">
+                                    <button>去购物车结算</button>
+                                </div>
+                            </li>
+                            <!-- <li style="width: 200px;">
+                                <div class="">
+                                    <div>共<span>2</span>件商品</div>
+                                    <div>14000</div>
+                                </div>
+                                <a class="">去购物车结算</a>
+                            </li> -->
+                        </ul>
+                    </div>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        <!--navbar 导航条-->
+        <div class="header-navbar container">
+            <router-link to="/" class="logo fl">
+            <img class="center" src="images/logo-footer.png" alt="">
+            </router-link>
+            <div class="nav fl">
+                <div class="allproduct" v-show="otherPage">全部商品分类</div>
+                <ul class="clear nav-item fl" v-bind:class="{'otherpage':otherPage}">
+                    </li>
+                    <li class="fl "><a class="link" href="javascript:"><span class="text">小米手机</span></a></li>
+                    <li class="fl"><a class="link" href="javascript:"><span class="text">红米</span></a></li>
+                    <li class="fl"><a class="link" href="javascript:"><span class="text">笔记本</span></a></li>
+                    <li class="fl"><a class="link" href="javascript:"><span class="text">电视</span></a></li>
+                    <li class="fl"><a class="link" href="javascript:"><span class="text">盒子</span></a></li>
+                    <li class="fl"><a class="link" href="javascript:"><span class="text">路由器</span></a></li>
+                    <li class="fl"><a class="link" href="javascript:"><span class="text">智能硬件</span></a></li>
+                    <li class="fl"><a class="link" href="javascript:"><span class="text">服务</span></a></li>
+                    <li class="fl"><a class="link" href="javascript:"><span class="text">社区</span></a></li>
+                </ul>
+            </div>
+            <div class="fr clear nav-rt">
+                <form class="search-form">
+                    <label for="search">
+                </label>
+                    <input id="search" class="search-text">
+                    <a href="javascript:" class="search-btn">
+                    <span class="iconfont center">&#xe616;</span>
+                </a>
+                    <div class="search-words">
+                        <a href="javascript:">小米Max2</a>
+                        <a href="javascript:">小米Note3现货</a>
+                    </div>
+                    <div class="keywords">
+                        <ul class="result-list">
+                            <li><a href="javascript:">小米6<span class="result">约有7件</span></a></li>
+                            <li><a href="javascript:">红米Note 4X<span class="result">约有8件</span></a></li>
+                            <li><a href="javascript:">小米MIX<span class="result">约有1件</span></a></li>
+                            <li><a href="javascript:">小米Max2<span class="result">约有3件</span></a></li>
+                            <li><a href="javascript:">小米5X<span class="result">约有3件</span></a></li>
+                            <li><a href="javascript:">手环<span class="result">约有6件</span></a></li>
+                            <li><a href="javascript:">耳机<span class="result">约有19件</span></a></li>
+                            <li><a href="javascript:">充电宝<span class="result">约有19件</span></a></li>
+                            <li><a href="javascript:">运动鞋<span class="result">约有2件</span></a></li>
+                            <li><a href="javascript:">路由器<span class="result">约有17件</span></a></li>
+                            <li><a href="javascript:">小米盒子<span class="result">约有8件</span></a></li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="header-nav-menu header-nav-menu-active">
+            <ul class="children-list clear">
+
+                <li v-for="item in topArr0" @click="getMsg(item,'productTopListModel')">
+                    <div class="figure-thumb figure">
+                        <router-link to="/buy">
+                        <a href="javascript:">
+                        <img :src="item.src" alt="">
+                        </a>
+                        </router-link>
+                    </div>
+                    <div class="title">
+                        <a href="javascript:" v-text="item.name"></a>
+                    </div>
+                    <p class="price" v-if="!item.valueNum" v-text="item.value+'元起'"></p>
+                    <p class="price" v-if="item.valueNum" v-text="item.value+'元'"></p>
+                    <div class="product-label">
+                        <div class="goods-label" v-if="item.show" v-text="item.show"></div>
+                    </div>
+                </li>
+
+            </ul>
+            <ul class="children-list clear">
+                <li v-for="item in topArr1">
+                    <div class="figure-thumb figure">
+                        <a href="javascript:">
+                        <img :src="item.src" alt="">
+                    </a>
+                    </div>
+                    <div class="title">
+                        <a href="javascript:" v-text="item.name"></a>
+                    </div>
+                    <p class="price" v-if="!item.valueNum" v-text="item.value+'元起'"></p>
+                    <p class="price" v-if="item.valueNum" v-text="item.value+'元'"></p>
+                    <div class="product-label">
+                        <div class="goods-label" v-if="item.show" v-text="item.show"></div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="children-list clear">
+                <li v-for="item in topArr2">
+                    <div class="figure-thumb figure">
+                        <a href="javascript:">
+                        <img :src="item.src" alt="">
+                    </a>
+                    </div>
+                    <div class="title">
+                        <a href="javascript:" v-text="item.name"></a>
+                    </div>
+                    <p class="price" v-if="!item.valueNum" v-text="item.value+'元起'"></p>
+                    <p class="price" v-if="item.valueNum" v-text="item.value+'元'"></p>
+                    <div class="product-label">
+                        <div class="goods-label" v-if="item.show" v-text="item.show"></div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="children-list clear">
+                <li v-for="item in topArr3">
+                    <div class="figure-thumb figure">
+                        <a href="javascript:">
+                        <img :src="item.src" alt="">
+                    </a>
+                    </div>
+                    <div class="title">
+                        <a href="javascript:" v-text="item.name"></a>
+                    </div>
+                    <p class="price" v-if="!item.valueNum" v-text="item.value+'元起'"></p>
+                    <p class="price" v-if="item.valueNum" v-text="item.value+'元'"></p>
+                    <div class="product-label">
+                        <div class="goods-label" v-if="item.show" v-text="item.show"></div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="children-list clear">
+                <li v-for="item in topArr4">
+                    <div class="figure-thumb figure">
+                        <a href="javascript:">
+                        <img :src="item.src" alt="">
+                    </a>
+                    </div>
+                    <div class="title">
+                        <a href="javascript:" v-text="item.name"></a>
+                    </div>
+                    <p class="price" v-if="!item.valueNum" v-text="item.value+'元起'"></p>
+                    <p class="price" v-if="item.valueNum" v-text="item.value+'元'"></p>
+                    <div class="product-label">
+                        <div class="goods-label" v-if="item.show" v-text="item.show"></div>
+                    </div>
+                </li>
+
+            </ul>
+            <ul class="children-list clear">
+                <li v-for="item in topArr5">
+                    <div class="figure-thumb figure">
+                        <a href="javascript:">
+                        <img :src="item.src" alt="">
+                    </a>
+                    </div>
+                    <div class="title">
+                        <a href="javascript:" v-text="item.name"></a>
+                    </div>
+                    <p class="price" v-if="!item.valueNum" v-text="item.value+'元起'"></p>
+                    <p class="price" v-if="item.valueNum" v-text="item.value+'元'"></p>
+                    <div class="product-label">
+                        <div class="goods-label" v-if="item.show" v-text="item.show"></div>
+                    </div>
+                </li>
+            </ul>
+            <ul class="children-list clear">
+                <li v-for="item in topArr6">
+                    <div class="figure-thumb figure">
+                        <a href="javascript:">
+                        <img :src="item.src" alt="">
+                    </a>
+                    </div>
+                    <div class="title">
+                        <a href="javascript:" v-text="item.name"></a>
+                    </div>
+                    <p class="price" v-if="!item.valueNum" v-text="item.value+'元起'"></p>
+                    <p class="price" v-if="item.valueNum" v-text="item.value+'元'"></p>
+                    <div class="product-label">
+                        <div class="goods-label" v-if="item.show" v-text="item.show"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- 侧边导航 -->
+        <div class="category" v-bind:class="{theSideBar:otherPage,       mainSideBar:!otherPage}" style="display:none;">
+            <ul id="categoryList" class="category-list clear">
+                <li class="category-item">
+                    <a class="title" href="javascript:">手机 电话卡<span class="iconfont">&#xe63f;</span></a>
+                    <div class="children clear children-col-3" style="display: none;">
+                        <ul class="children-list children-list-col children-list-col-1">
+                            <li v-for="item,index in arr0" @click="getMsg(item,'productBarListModel')">
+                                <router-link class="link" to="/buy"><img class="thumb" :src="item.src_lit" width="40" height="40" alt=""><span class="text" v-text="item.name"></span>
+                                <a class="btn  btn-buy" href="javascript:">选购</a>
+                                </router-link>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="category-item">
+                    <a class="title" href="javascript:">笔记本 <span class="iconfont">&#xe63f;</span></a>
+                    <div class="children clear children-col-3" style="display: none;">
+                        <ul class="children-list children-list-col children-list-col-1">
+                            <li v-for="item in arr1">
+                                <a class="link" href="javascript:"><img class="thumb" :src="item.src_lit" width="40" height="40" alt=""><span class="text" v-text="item.name"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="category-item">
+                    <a class="title" href="javascript:">电视 盒子<span class="iconfont">&#xe63f;</span></a>
+                    <div class="children clear children-col-3" style="display: none;">
+                        <ul class="children-list children-list-col children-list-col-1">
+                            <li v-for="item in arr2">
+                                <a class="link" href="javascript:"><img class="thumb" :src="item.src_lit" width="40" height="40" alt=""><span class="text" v-text="item.name"></span></a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </li>
+                <li class="category-item">
+                    <a class="title" href="javascript:">路由器 智能硬件<span class="iconfont">&#xe63f;</span></a>
+                    <div class="children clear children-col-4" style="display: none;">
+                        <ul class="children-list children-list-col children-list-col-1">
+                            <li v-for="item in arr3">
+                                <a class="link" href="javascript:"><img class="thumb" :src="item.src_lit" width="40" height="40" alt=""><span class="text" v-text="item.name"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="category-item">
+                    <a class="title" href="javascript:">移动电源 电源 插线板<span class="iconfont">&#xe63f;</span></a>
+                    <div class="children clear children-col-2" style="display: none;">
+                        <ul class="children-list children-list-col children-list-col-1">
+                            <li v-for="item in arr4">
+                                <a class="link" href="javascript:"><img class="thumb" :src="item.src_lit" width="40" height="40" alt=""><span class="text" v-text="item.name"></span></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li class="category-item">
+                    <a class="title" href="javascript:">耳机 音箱<span class="iconfont">&#xe63f;</span></a>
+                    <div class="children clear children-col-4" style="display: none;">
+                        <ul class="children-list children-list-col children-list-col-1">
+                            <li v-for="item in arr5">
+                                <a class="link" href="javascript:"><img class="thumb" :src="item.src_lit" width="40" height="40" alt=""><span class="text" v-text="item.name"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="category-item">
+                    <a class="title" href="javascript:">保护套 贴膜<span class="iconfont">&#xe63f;</span></a>
+                    <div class="children clear children-col" style="display: none;">
+                        <ul class="children-list children-list-col ">
+                            <li v-for="item in arr6">
+                                <a class="link" href="javascript:"><img class="thumb" :src="item.src_lit" width="40" height="40" alt=""><span class="text" v-text="item.name"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="category-item">
+                    <a class="title" href="javascript:">线材 支架 储存卡<span class="iconfont">&#xe63f;</span></a>
+                    <div class="children clear children-col" style="display: none;">
+                        <ul class="children-list children-list-col">
+                            <li v-for="item in arr7">
+                                <a class="link" href="javascript:"><img class="thumb" :src="item.src_lit" width="40" height="40" alt=""><span class="text" v-text="item.name"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="category-item">
+                    <a class="title" href="javascript:">箱包 服饰 鞋 眼镜<span class="iconfont">&#xe63f;</span></a>
+                    <div class="children clear children-col" style="display: none;">
+                        <ul class="children-list children-list-col children-list-col">
+                            <li v-for="item in arr8">
+                                <a class="link" href="javascript:"><img class="thumb" :src="item.src_lit" width="40" height="40" alt=""><span class="text" v-text="item.name"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="category-item">
+                    <a class="title" href="javascript:">米兔 生活周边<span class="iconfont">&#xe63f;</span></a>
+                    <div class="children clear children-col" style="display: none;">
+                        <ul class="children-list children-list-col">
+                            <li v-for="item in arr9">
+                                <a class="link" href="javascript:"><img class="thumb" :src="item.src_lit" width="40" height="40" alt=""><span class="text" v-text="item.name"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <router-view @test="handle" :ite="item" v-on:obj="add"></router-view>
+        <!-- 页尾 -->
+        <div class="footer">
+            <div class="container">
+                <div class="site-footer">
+                    <div class="footer-service">
+                        <ul class="list-service clear">
+                            <li>
+                                <a href="javascript:"><span class="iconfont">&#xe603;</span>1小时快修服务</a>
+                            </li>
+                            <li>
+                                <a href="javascript:"><span class="iconfont">&#xe638;</span>7天无理由退货</a>
+                            </li>
+                            <li>
+                                <a href="javascript:"><span class="iconfont">&#xe605;</span>15天免费换货</a>
+                            </li>
+                            <li>
+                                <a href="javascript:"><span class="iconfont">&#xe607;</span>满150元包邮</a>
+                            </li>
+                            <li>
+                                <a href="javascript:"><span class="iconfont">&#xe606;</span>520余家售后网点</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-links clear">
+                        <dl class="col-links ">
+                            <dt>帮助中心</dt>
+                            <dd><a href="javascript:">购物指南</a></dd>
+                            <dd><a href="javascript:">支付方式</a></dd>
+                            <dd><a href="javascript:">配送方式</a></dd>
+                        </dl>
+                        <dl class="col-links ">
+                            <dt>服务支持</dt>
+                            <dd><a href="javascript:">售后政策</a></dd>
+                            <dd><a href="javascript:">自助服务</a></dd>
+                            <dd><a href="javascript:">相关下载</a></dd>
+                        </dl>
+                        <dl class="col-links ">
+                            <dt>大米之家</dt>
+                            <dd><a href="javascript:">大米之家</a></dd>
+                            <dd><a href="javascript:">服务网点</a></dd>
+                            <dd><a href="javascript:">预约服务</a></dd>
+                        </dl>
+                        <dl class="col-links ">
+                            <dt>关于大米</dt>
+                            <dd><a href="javascript:">了解大米</a></dd>
+                            <dd><a href="javascript:">加入大米</a></dd>
+                            <dd><a href="javascript:">联系我们</a></dd>
+                        </dl>
+                        <dl class="col-links ">
+                            <dt>关注我们</dt>
+                            <dd><a href="javascript:">新浪微博</a></dd>
+                            <dd><a href="javascript:">大米部落</a></dd>
+                            <dd><a href="javascript:">官方微信</a></dd>
+
+                        </dl>
+                        <dl class="col-links ">
+                            <dt>特色服务</dt>
+                            <dd><a href="javascript:">F 码通道</a></dd>
+                            <dd><a href="javascript:">大米移动</a></dd>
+                            <dd><a href="javascript:">防伪查询</a></dd>
+                        </dl>
+                        <div class="col-contact">
+                            <p class="phone">400-000-0000</p>
+                            <p>
+                                <span class="J_serviceTime-normal" style="">周一至周日 8:00-18:00</span>
+                                <br>（仅收市话费）
+                            </p>
+                            <a class="btn  btn-small" href="javascript:"><span class="iconfont">&#xe615;</span> 24小时在线客服</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="site-info container">
+                    <div class="logo2">
+                        <img src="images/logo-footer.png" alt="">
+                    </div>
+                    <div class="info-text">
+                        <p class="sites">
+                            <a href="javascript:">大米网</a><span class="sep">|</span>
+                            <a href="javascript:">MIII</a><span class="sep">|</span>
+                            <a href="javascript:">我聊</a><span class="sep">|</span>
+                            <a href="javascript:">多看书城</a><span class="sep">|</span>
+                            <a href="javascript:">大米路由器</a><span class="sep">|</span>
+                            <a href="javascript:">视频电话</a><span class="sep">|</span>
+                            <a href="javascript:">大米后院</a><span class="sep">|</span>
+                            <a href="javascript:">大米天猫店</a><span class="sep">|</span>
+                            <a href="javascript:">大米淘宝直营店</a><span class="sep">|</span>
+                            <a href="javascript:">大米网盟</a><span class="sep">|</span>
+                            <a href="javascript:">问题反馈</a><span class="sep">|</span>
+                            <a href="javascript:">Select Region</a>
+                        </p>
+                        <p>
+                            <a href="javascript:">©mmmm
+                            <br>
+                            除特殊说明，所有数据均出自我司实验室测试</a>
+                    </div>
+                    <div class="info-links">
+                        <a href="javascript:"><img src="images/truste.png"></a>
+                        <a href="javascript:"><img src="images/v-logo-2.png"></a>
+                        <a href="javascript:"><img src="images/v-logo-1.png"></a>
+                        <a href="javascript:"><img src="images/v-logo-3.png"></a>
+                    </div>
+                    <div class="slogan"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-1.11.3.js"></script>
+
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <script src="js/vue-resource.js"></script>
+    <!-- 主页模板 -->
+    <template id="main">
+        <div class="main" ref="main">
+            <!--轮播图和分类 slider-->
+            <div class="container">
+                <div class="slider ">
+                    <ul class='slider-main'>
+                        <li>
+                            <a href="javascript:"><img src="images/slider/1.jpg" alt="" /></a>
+                        </li>
+                        <li>
+                            <a href="javascript:"><img src="images/slider/2.jpg" alt="" /></a>
+                        </li>
+                        <li>
+                            <a href="javascript:"><img src="images/slider/3.jpg" alt="" /></a>
+                        </li>
+                        <li>
+                            <a href="javascript:"><img src="images/slider/4.jpg" alt="" /></a>
+                        </li>
+                        <li>
+                            <a href="javascript:"><img src="images/slider/5.jpg" alt="" /></a>
+                        </li>
+                        <li>
+                            <a href="javascript:"><img src="images/slider/6.jpg" alt="" /></a>
+                        </li>
+
+                    </ul>
+                    <ul class='index'>
+                        <li class='active'></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <a class='btn pre' href="javascript:"></a>
+                    <a class='btn next' href="javascript:"></a>
+
+                </div>
+                <div class="home-nav clear ">
+                    <div class="home-channel-list clear fl">
+                        <ul class="clear">
+                            <li class="top left"><a href="javascript:"><i class="iconfont">&#xe601;</i>选购手机</a></li>
+                            <li class="top"><a href="javascript:"><i class="iconfont">&#xe659;</i>企业团购</a></li>
+                            <li class="top"><a href="javascript:"><i class="iconfont">&#xe60b;</i>官翻产品</a></li>
+                            <li class="left"><a href="javascript:"><i class="iconfont">&#xe60c;</i>小米移动</a></li>
+                            <li class=""><a href="javascript:"><i class="iconfont">&#xe636;</i>以旧换新</a></li>
+                            <li class=""><a href="javascript:"><i class="iconfont">&#xe62b;</i>话费充值 </a></li>
+                        </ul>
+                    </div>
+                    <div class="home-promo-list fr">
+                        <ul class="clear">
+                            <li class="fl">
+                                <a href="javascript:"><img src="images/clear/xmad_15082970534344_tHAYO.jpg" alt=""></a>
+                            </li>
+                            <li class="fl">
+                                <a href="javascript:"><img src="images/clear/xmad_15057466227847_PcINE.jpg" alt=""></a>
+                            </li>
+                            <li class="fl">
+                                <a href="javascript:"><img src="images/clear/xmad_15082489662032_XHkgN.jpg" alt=""></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--小米明星单品-->
+            <div class="container">
+                <div class="start-product">
+                    <div class="box-hd">
+                        <h2 class="title">小米明星产品</h2>
+                        <div class="arrow">
+                            <a class=" arrow-r" href="javascript:"><i class="iconfont">&#xe649;</i></a>
+                            <a class="arrow-l" href="javascript:"><i class="iconfont">&#xe63f;</i></a>
+                        </div>
+                    </div>
+                    <div class="xm-carousel-wrapper" style="height: 340px; overflow:hidden;">
+                        <ul class="main-banner" style="left:0">
+                            <li :class="'rainbow-item-'+(index+1)" v-for="item,index in starArr1">
+                                <a class="thumb" href="javascript:">
+                                <img :src="item.src" alt="小米手机">
+                            </a>
+                                <h3><a href="javascript:">{{item.name}}</a></h3>
+                                <p class="desc">{{item.describe}}</p>
+                                <p class="price">{{item.value}}</p>
+                            </li>
+                        </ul>
+                        <ul class="main-banner">
+                            <li :class="'rainbow-item-'+(index+6)" v-for="item,index in starArr2">
+                                <a class="thumb" href="javascript:">
+                                    <img :src="item.src" alt="小米手机">
+                                </a>
+                                <h3><a href="javascript:">{{item.name}}</a></h3>
+                                <p class="desc">{{item.describe}}</p>
+                                <p class="price">{{item.value}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--main-home-->
+            <div class="main-home">
+                <div class="container ">
+                    <!--家电-->
+                    <div class="home-brick-row-box home-brick-box-1">
+                        <div class="box-hd">
+                            <h2 class="title">家电</h2>
+                            <div class="more ">
+                                <ul class="tab-list tab-jiadian">
+                                    <li class="tab-active">热门</li>
+                                    <li>电视影音</li>
+                                    <li>电脑</li>
+                                    <li>家居</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="box-wrapper">
+                            <div class="box-lf">
+                                <ul class="box-well">
+                                    <li>
+                                        <a href="javascript:">
+                                        <img src="./images/d78fc81d-8713-43fe-8387-17f31b4b0745.jpg" alt="图片" width="234px">
+                                    </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="box-rt box-rt-1 box-jiadian">
+                                <ul class="clear" style="display: block">
+                                    <li class="box-pro" v-for="item in contentArr01">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="desc" v-text="item.describe"></p>
+                                        <p class="price" v-text="item.newprice"></p>
+                                    </li>
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/pms_1468806372.46368911!220x220.jpg" alt="小白摄像机">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">小白摄像机</a></h3>
+                                                <p class="Price">399元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 热门</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="clear">
+                                    <li class="box-pro" v-for="item in contentArr02">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price" v-text="item.newprice"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/xmad_14988107613863_SWjuV.jpg">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">盒子3 增强版</a></h3>
+                                                <p class="Price">399元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 电视影音</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="clear">
+                                    <li class="box-pro" v-for="item in contentArr03">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="desc" v-text="item.describe" v-if="item.describe"></p>
+                                        <p class="price" v-text="item.newprice"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/pms_1469523170.25518983!220x220.jpg" alt="多功能转接器">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">多功能转接器</a></h3>
+                                                <p class="Price">149元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 电脑</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="clear">
+                                    <li class="box-pro" v-for="item in contentArr04">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price" v-text="item.newprice"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/pms_1490756071.3088664!220x220.png">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">Yeelight LED 吸顶灯</a></h3>
+                                                <p class="Price">349元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 家居</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--智能-->
+                    <div class="home-brick-row-box home-brick-box-1">
+                        <div class="box-hd">
+                            <h2 class="title">智能</h2>
+                            <div class="more ">
+                                <ul class="tab-list tab-zhineng">
+                                    <li class="tab-active">热门</li>
+                                    <li>出行</li>
+                                    <li>健康</li>
+                                    <li>酷玩</li>
+                                    <li>路由器</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="box-wrapper">
+                            <div class="box-lf">
+                                <ul class="box-well">
+                                    <li>
+                                        <a href="javascript:">
+                                        <img src="images/xmad_15064395687986_QeIWO.jpg" alt="">
+                                    </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="javascript:">
+                                        <img src="images/xmad_15016774208082_Gxeid.jpg" alt="">
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="box-rt box-rt-3 box-zhineng">
+                                <ul class="clear" style="display: block">
+                                    <li class="box-pro" v-for="item in contentArr11">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price" v-text="item.newprice"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/pms_1477985364.89714934!220x220.jpg">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">小米VR眼镜</a></h3>
+                                                <p class="Price">299元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 热门</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="clear">
+                                    <li class="box-pro" v-for="item in contentArr12">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price" v-text="item.newprice"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/pms_1492509229.84515978!220x220.jpg" alt="大米车载充电器">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">米家车载空气净化器滤芯</a></h3>
+                                                <p class="Price"></p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 出行</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="clear">
+                                    <li class="box-pro" v-for="item in contentArr13">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price" v-text="item.newprice"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/T1KzbQBvbT1RXrhCrK.jpg">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">小米水质TDS检测笔</a></h3>
+                                                <p class="Price">39元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 健康</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="clear">
+                                    <li class="box-pro" v-for="item in contentArr14">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price" v-text="item.newprice"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/pms_1468806372.46368911!220x220.jpg" alt="">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">小白摄像机</a></h3>
+                                                <p class="Price">399元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 酷玩</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="clear">
+                                    <li class="box-pro" v-for="item in contentArr15">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price" v-text="item.newprice"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/T13y_vBgJT1RXrhCrK!220x220.jpg">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">小米千兆网线</a></h3>
+                                                <p class="Price">14.9元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 路由器</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--搭配-->
+                    <div class="home-brick-row-box home-brick-box-1">
+                        <div class="box-hd">
+                            <h2 class="title">搭配</h2>
+                            <div class="more ">
+                                <ul class="tab-list tab-dapei">
+                                    <li class="tab-active">热门</li>
+                                    <li>耳机音箱</li>
+                                    <li>电源</li>
+                                    <li>电池存储卡</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="box-wrapper">
+                            <div class="box-lf">
+                                <ul class="box-well">
+                                    <li>
+                                        <a href="javascript:">
+                                        <img src="images/xmad_14994014807425_VijLG.jpg" alt="">
+                                    </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="javascript:">
+                                        <img src="images/4c60cabb-d2c4-4fb6-bb06-3b35a8265932.jpg" alt="">
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="box-rt box-rt-1 box-dapei">
+                                <ul class="clear" style="display: block">
+                                    <li class="box-pro" v-for="item in contentArr21">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price price-top">{{item.newprice}}
+                                            <del v-if="item.oldprice"><span class="num" v-text="item.oldprice"></span>元</del>
+                                        </p>
+                                        <p v-if="item.pinjiaNum" v-text="item.pinjiaNum" class="pinjiaNum"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/pms_1502093110.00979492.jpg?width=80&height=80" alt="大米车载充电器">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">小米运动蓝牙耳机</a></h3>
+                                                <p class="Price">169元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 热门</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="clear">
+                                    <li class="box-pro" v-for="item in contentArr22">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price price-top">{{item.newprice}}
+                                            <del v-if="item.oldprice"><span class="num" v-text="item.oldprice"></span>元</del>
+                                        </p>
+                                        <p v-if="item.pinjiaNum" v-text="item.pinjiaNum" class="pinjiaNum"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/T1MDK_B_YT1RXrhCrK!220x220.jpg">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">小米蓝牙音箱</a></h3>
+                                                <p class="Price">199元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 耳机音响</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="clear">
+                                    <li class="box-pro" v-for="item in contentArr23">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price price-top">{{item.newprice}}
+                                            <del v-if="item.oldprice"><span class="num" v-text="item.oldprice"></span>元</del>
+                                        </p>
+                                        <p v-if="item.pinjiaNum" v-text="item.pinjiaNum" class="pinjiaNum"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/T13mDQBjCT1RXrhCrK.jpg" alt="大米车载充电器">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">小米智能插板</a></h3>
+                                                <p class="Price">69元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 电源</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="clear">
+                                    <li class="box-pro" v-for="item in contentArr24">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price price-top">{{item.newprice}}
+                                            <del v-if="item.oldprice"><span class="num" v-text="item.oldprice"></span>元</del>
+                                        </p>
+                                        <p v-if="item.pinjiaNum" v-text="item.pinjiaNum" class="pinjiaNum"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/pms_1490165991.05655005!220x220.png">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">SanDisk 16GB存储卡</a></h3>
+                                                <p class="Price">44.9元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 电池存储卡</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--配件-->
+                    <div class="home-brick-row-box home-brick-box-1">
+                        <div class="box-hd">
+                            <h2 class="title">配件</h2>
+                            <div class="more ">
+                                <ul class="tab-list tab-peijian">
+                                    <li class="tab-active">热门</li>
+                                    <li>保护套</li>
+                                    <li>贴膜</li>
+                                    <li>其他配件</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="box-wrapper">
+                            <div class="box-lf">
+                                <ul class="box-well">
+                                    <li>
+                                        <a href="javascript:">
+                                        <img src="images/xmad_15030416937964_eOuQp.jpg" alt="">
+                                    </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="javascript:">
+                                        <img src="images/xmad_15053023729301_vkfBo.jpg" alt="">
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="box-rt box-rt-1 box-peijian">
+                                <ul class="clear" style="display: block">
+                                    <li class="box-pro" v-for="item in contentArr31">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price price-top">{{item.newprice}}
+                                            <del v-if="item.oldprice"><span class="num" v-text="item.oldprice"></span>元</del>
+                                        </p>
+                                        <p v-if="item.pinjiaNum" v-text="item.pinjiaNum" class="pinjiaNum"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/pms_1493261514.03223754.jpg?width=80&height=80" alt="大米车载充电器">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">小米6 高透软胶保护套</a></h3>
+                                                <p class="Price">19元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 热门</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="clear">
+                                    <li class="box-pro" v-for="item in contentArr32">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price price-top">{{item.newprice}}
+                                            <del v-if="item.oldprice"><span class="num" v-text="item.oldprice"></span>元</del>
+                                        </p>
+                                        <p v-if="item.pinjiaNum" v-text="item.pinjiaNum" class="pinjiaNum"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/pms_1472198624.61936711!220x220.jpg">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">红米Note4 智能显示保护套</a></h3>
+                                                <p class="Price">39元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 保护套</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="clear">
+                                    <li class="box-pro" v-for="item in contentArr33">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price price-top">{{item.newprice}}
+                                            <del v-if="item.oldprice"><span class="num" v-text="item.oldprice"></span>元</del>
+                                        </p>
+                                        <p v-if="item.pinjiaNum" v-text="item.pinjiaNum" class="pinjiaNum"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/pms_1469787992.44385373!220x220.jpg" alt="大米车载充电器">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">红米Pro 标准高透贴膜</a></h3>
+                                                <p class="Price">19元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 贴膜</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="clear">
+                                    <li class="box-pro" v-for="item in contentArr34">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price price-top">{{item.newprice}}
+                                            <del v-if="item.oldprice"><span class="num" v-text="item.oldprice"></span>元</del>
+                                        </p>
+                                        <p v-if="item.pinjiaNum" v-text="item.pinjiaNum" class="pinjiaNum"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/pms_1480066629.77799920!220x220.jpg">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">小米二合一数据线100cm</a></h3>
+                                                <p class="Price">24.9元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 其他配件</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--周边-->
+                    <div class="home-brick-row-box home-brick-box-1">
+                        <div class="box-hd">
+                            <h2 class="title">周边</h2>
+                            <div class="more ">
+                                <ul id="zb" class="tab-list tab-zhoubian">
+                                    <li class="tab-active">热门</li>
+                                    <li>服装</li>
+                                    <li>米兔</li>
+                                    <li>生活周边</li>
+                                    <li>箱包</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="box-wrapper">
+                            <div class="box-lf">
+                                <ul class="box-well">
+                                    <li>
+                                        <a href="javascript:">
+                                        <img src="images/xmad_15028909363415_HdCqn.jpg" alt="">
+                                    </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="javascript:">
+                                        <img src="images/xmad_15084966073422_rCgXB.jpg" alt="">
+                                    </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="box-rt box-rt-3 box-zhoubian">
+                                <ul class="clear" style="display: block">
+                                    <li class="box-pro" v-for="item in contentArr41">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price price-top">{{item.newprice}}
+                                            <del v-if="item.oldprice"><span class="num" v-text="item.oldprice"></span>元</del>
+                                        </p>
+                                        <p v-if="item.pinjiaNum" v-text="item.pinjiaNum" class="pinjiaNum"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/pms_1493873069.71028592!220x220.jpg">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">90分旅行箱28寸 </a></h3>
+                                                <p class="Price">499元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 热门</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="clear">
+                                    <li class="box-pro" v-for="item in contentArr42">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price price-top">{{item.newprice}}
+                                            <del v-if="item.oldprice"><span class="num" v-text="item.oldprice"></span>元</del>
+                                        </p>
+                                        <p v-if="item.pinjiaNum" v-text="item.pinjiaNum" class="pinjiaNum"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/pms_1490699313.83423551!220x220.png" alt="大米车载充电器">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">小米短袖T恤 米兔昆仑游 男款</a></h3>
+                                                <p class="Price">39元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 服装</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="clear">
+                                    <li class="box-pro" v-for="item in contentArr43">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price price-top">{{item.newprice}}
+                                            <del v-if="item.oldprice"><span class="num" v-text="item.oldprice"></span>元</del>
+                                        </p>
+                                        <p v-if="item.pinjiaNum" v-text="item.pinjiaNum" class="pinjiaNum"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/pms_1490699260.62076018!220x220.png">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">小米V领短袖T恤 女款</a></h3>
+                                                <p class="Price">39元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 米兔</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="clear">
+                                    <li class="box-pro" v-for="item in contentArr44">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price price-top">{{item.newprice}}
+                                            <del v-if="item.oldprice"><span class="num" v-text="item.oldprice"></span>元</del>
+                                        </p>
+                                        <p v-if="item.pinjiaNum" v-text="item.pinjiaNum" class="pinjiaNum"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/T1fODjBsbT1RXrhCrK!220x220.jpg" alt="大米车载充电器">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">鼠标垫加大号</a></h3>
+                                                <p class="Price">19元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 生活周边</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul class="clear">
+                                    <li class="box-pro" v-for="item in contentArr45">
+                                        <a href="javascript:"><img :src="item.src" alt=""></a>
+                                        <h3 class="title"><a href="javascript:" v-text="item.name"></a></h3>
+                                        <p class="price price-top">{{item.newprice}}
+                                            <del v-if="item.oldprice"><span class="num" v-text="item.oldprice"></span>元</del>
+                                        </p>
+                                        <p v-if="item.pinjiaNum" v-text="item.pinjiaNum" class="pinjiaNum"></p>
+                                        <div class="review-wrapper">
+                                            <a href="javascript:">
+                                            <span class="review">
+                                        大米的品质还是非常有保证的，东西是物美价廉，如果要是...
+                                    </span>
+                                            <span class="author">
+                                            来自于 携手 的评价
+    
+                                        </span>
+                                        </a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <ul class="box-hot">
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                <img src="images/pms_1497672770.48873760!220x220.jpg">
+                                            </a>
+                                                <h3 class="title"><a href="javascript:">小米学院休闲双肩包</a></h3>
+                                                <p class="Price">79元</p>
+                                            </li>
+                                            <li class="box-pro">
+                                                <a href="javascript:">
+                                                    <div class="more fl">
+                                                        浏览更多
+                                                        <small> 箱包</small>
+                                                    </div>
+                                                    <i class="rt fr fa fa-arrow-circle-o-right" style="color:#ff6700;font-size:48px;line-height:48px;"></i>>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--为你推荐-->
+                    <div class="home-brick-row-2-box home-brick-box-1">
+                        <div class="slider-banner">
+                            <div class="box-hd">
+                                <h2 class="title">为你推荐</h2>
+                                <div class="arrow">
+                                    <a class=" arrow-r-1" href="javascript:"><i class="iconfont">&#xe649;</i></a>
+                                    <a class="arrow-l-1" href="javascript:"><i class="iconfont">&#xe63f;</i></a>
+                                </div>
+                            </div>
+                            <div class="xm-carousel-wrapper-1 clear">
+                                <ul class="xm-carousel-list clear" style="left:0;">
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="images/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:">大米笔记本Air 13.3英寸 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">4999元</dd>
+                                            <dd class="xm-recommend-tips"> 5290人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="images/p4.png" alt="10000mAh大米移动电源2">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:">10000mAh大米移动电源2 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">79元</dd>
+                                            <dd class="xm-recommend-tips"> 1.7万人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="images/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 小方智能摄像机 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">129元</dd>
+                                            <dd class="xm-recommend-tips"> 187人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="images/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 大米电视3s 65英寸 影院版 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">5999元</dd>
+                                            <dd class="xm-recommend-tips"> 5270人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="images/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 智米除菌加湿器 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">799元</dd>
+                                            <dd class="xm-recommend-tips"> 472人好评</dd>
+                                        </dl>
+                                    </li>
+                                </ul>
+                                <ul class="xm-carousel-list clear">
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="images/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 我家IH电饭煲 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">399元</dd>
+                                            <dd class="xm-recommend-tips"> 5290人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="images/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 90分旅行箱 24寸 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">349元</dd>
+                                            <dd class="xm-recommend-tips"> 1.6万人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="images/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 大米路由器3C </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">99元</dd>
+                                            <dd class="xm-recommend-tips"> 187人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="images/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 米兔儿童手表Q </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">199元</dd>
+                                            <dd class="xm-recommend-tips"> 1204人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="images/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 我家骑记电助力折叠自行车 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">2999元</dd>
+                                            <dd class="xm-recommend-tips"> 697人好评</dd>
+                                        </dl>
+                                    </li>
+                                </ul>
+                                <ul class="xm-carousel-list clear">
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="images/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:">大米笔记本Air 13.3英寸 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">4999元</dd>
+                                            <dd class="xm-recommend-tips"> 5290人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="images/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:">10000mAh大米移动电源2 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">79元</dd>
+                                            <dd class="xm-recommend-tips"> 1.7万人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="images/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 小方智能摄像机 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">129元</dd>
+                                            <dd class="xm-recommend-tips"> 187人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="images/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 大米电视3s 65英寸 影院版 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">5999元</dd>
+                                            <dd class="xm-recommend-tips"> 5270人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="images/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 智米除菌加湿器 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">799元</dd>
+                                            <dd class="xm-recommend-tips"> 472人好评</dd>
+                                        </dl>
+                                    </li>
+                                </ul>
+                                <ul class="xm-carousel-list clear">
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="img/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 我家IH电饭煲 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">399元</dd>
+                                            <dd class="xm-recommend-tips"> 5290人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="img/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 90分旅行箱 24寸 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">349元</dd>
+                                            <dd class="xm-recommend-tips"> 1.6万人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="img/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 大米路由器3C </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">99元</dd>
+                                            <dd class="xm-recommend-tips"> 187人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="img/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 米兔儿童手表Q </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">199元</dd>
+                                            <dd class="xm-recommend-tips"> 1204人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="img/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 我家骑记电助力折叠自行车 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">2999元</dd>
+                                            <dd class="xm-recommend-tips"> 697人好评</dd>
+                                        </dl>
+                                    </li>
+                                </ul>
+                                <ul class="xm-carousel-list clear">
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="img/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:">大米笔记本Air 13.3英寸 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">4999元</dd>
+                                            <dd class="xm-recommend-tips"> 5290人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="img/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:">10000mAh大米移动电源2 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">79元</dd>
+                                            <dd class="xm-recommend-tips"> 1.7万人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="img/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 小方智能摄像机 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">129元</dd>
+                                            <dd class="xm-recommend-tips"> 187人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="img/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 大米电视3s 65英寸 影院版 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">5999元</dd>
+                                            <dd class="xm-recommend-tips"> 5270人好评</dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>
+                                                <a href="javascript:">
+                                            <img src="img/p4.png" alt="">
+                                        </a>
+                                            </dt>
+                                            <dd class="xm-recommend-name">
+                                                <a href="javascript:"> 智米除菌加湿器 </a>
+                                            </dd>
+                                            <dd class="xm-recommend-price">799元</dd>
+                                            <dd class="xm-recommend-tips"> 472人好评</dd>
+                                        </dl>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--热评产品-->
+                    <div class="home-brick-row-3-box home-brick-box-1">
+                        <div class="hot-product">
+                            <div class="box-hd">
+                                <h2 class="title">热评产品</h2>
+                            </div>
+                            <div class="box-bd">
+                                <ul class="review-list clear">
+                                    <li class="review-item review-item-first">
+                                        <div class="figure figure-img">
+                                            <a href="javascript:">
+                                            <img src="images/7e051b10-ed56-43df-bd60-3780592a3345.jpg" alt="小米净水器">
+                                        </a>
+                                        </div>
+                                        <p class="review">
+                                            <a href="javascript:">
+                                                有了它，妈妈再也不用担心我喝不到健康的水了。呵呵，良心产品，平民价格，对现在的水质起到了很好的改善作...
+                                    </a>
+                                        </p>
+                                        <p class="author"> 来自于 HZG 的评价</p>
+                                        <div class="info">
+                                            <h3 class="title">
+                                                <a href="javascript:">小米净水器</a>
+                                            </h3>
+                                            <span class="sep">|</span>
+                                            <p class="price"><span class="num">1299</span>元</p>
+                                        </div>
+                                    </li>
+                                    <li class="review-item">
+                                        <div class="figure figure-img">
+                                            <a href="javascript:">
+                                            <img src="images/62d44838-f464-4c11-887c-9168645ae797.jpg" alt="90分旅行箱 20寸">
+                                        </a>
+                                        </div>
+                                        <p class="review">
+                                            <a href="javascript:">这箱子很好，外观漂亮，实用性强。很轻，有点软但不影响它的坚固。</a>
+                                        </p>
+                                        <p class="author"> 来自于 sddyboy 的评价</p>
+                                        <div class="info">
+                                            <h3 class="title">
+                                                <a href="javascript:">90分旅行箱 20寸</a>
+                                            </h3>
+                                            <span class="sep">|</span>
+                                            <p class="price"><span class="num">299</span>元</p>
+                                        </div>
+                                    </li>
+                                    <li class="review-item">
+                                        <div class="figure figure-img">
+                                            <a href="javascript:">
+                                            <img src="images/3c77fe32-1113-482d-91b1-9c01a079cce6.jpg" alt="小米笔记本Air">
+                                        </a>
+                                        </div>
+                                        <p class="review">
+                                            <a href="javascript:">刚收到，外观很漂亮，颜色也很喜欢，等了好长时间了，终于拿到了，非常满意，棒棒哒！！！</a>
+                                        </p>
+                                        <p class="author"> 来自于 江南晴天 的评价 </p>
+                                        <div class="info">
+                                            <h3 class="title">
+                                                <a href="javascript:">小米笔记本Air 12.5英寸</a>
+                                            </h3>
+                                            <span class="sep">|</span>
+                                            <p class="price"><span class="num">3499</span>元</p>
+                                        </div>
+                                    </li>
+                                    <li class="review-item">
+                                        <div class="figure figure-img">
+                                            <a href="javascript:">
+                                            <img src="images/8949026b-fa9a-4370-989b-5d5e2f149106.jpg" alt="小米路由器3">
+                                        </a>
+                                        </div>
+                                        <p class="review">
+                                            <a href="">安装简洁方便，信号不错！！！！！</a>
+                                        </p>
+                                        <p class="author"> 来自于 常有 的评价 </p>
+                                        <div class="info">
+                                            <h3 class="title">
+                                                <a href="javascript:">小米路由器3</a>
+                                            </h3>
+                                            <span class="sep">|</span>
+                                            <p class="price"><span class="num">149</span>元</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--内容-->
+                    <div class="home-brick-row-4-box home-brick-box-1">
+                        <div class="content">
+                            <div class="box-hd">
+                                <h2 class="title">内容</h2>
+                            </div>
+                            <div class="box-bd">
+                                <ul class="content-list clear">
+                                    <li class="content-item content-item-first">
+                                        <h2 class="title">图书</h2>
+                                        <div id='book' class="xm-carousel-wrapper-2" style="height: 340px; overflow: hidden;">
+                                            <ul class="item-list clear">
+                                                <li style="left:0">
+                                                    <a href="http://www.duokan.com/book/120800" target="_blank">
+                                                        <h4 class="name">哈利·波特与被诅咒的孩</h4>
+                                                        <p class="desc"> “哈利·波特”第八个故事中文版震撼来袭！特别彩排版剧本！ </p>
+                                                        <p class="price">29.37元</p>
+                                                        <div class="figure figure-img">
+                                                            <img src="images/5e5da924-84e3-4959-9e25-5891cdf30757" alt="">
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://www.duokan.com/book/120867" target="_blank">
+                                                        <h4 class="name">好吗好的</h4>
+                                                        <p class="desc"> 畅销作家大冰2016年新书！讲给你听，好吗好的！ </p>
+                                                        <p class="price">17.99元</p>
+                                                        <div class="figure figure-img">
+                                                            <img src="images/61e1385e-54de-48f3-8717-5e4f4b1cdd14.png" alt="">
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="jhttp://www.duokan.com/list/1-1?from=xiaomi" target="_blank">
+                                                        <p class="desc">
+                                                            海量好书，享受精品阅读时光
+                                                            <br> 漂亮的中文排版，千万读者选择！
+                                                        </p>
+                                                        <a class="btn" href="javascript:">前往多看阅读</a>
+                                                        <div class="figure figure-img">
+                                                            <img src="images/more-duokan.jpg" alt="">
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div class="arrow">
+                                                <a class="control control-prev iconfont" href="javascript:">&#xe649;</a>
+                                                <a class='control control-next iconfont' href="javascript:">&#xe63f;</a>
+                                            </div>
+                                        </div>
+                                        <div class="xm-pagers-wrapper">
+                                            <ul class="xm-pagers">
+                                                <li class="pager pager-active"><span class="dot"></span></li>
+                                                <li class="pager"><span class="dot"></span></li>
+                                                <li class="pager"><span class="dot"></span></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="content-item content-item-second">
+                                        <h2 class="title">MIUI 主题</h2>
+                                        <div id='mi' class="xm-carousel-wrapper-3" style="height: 340px; overflow: hidden;">
+                                            <ul class="item-list clear">
+                                                <li style="left:0">
+                                                    <a href="http://zhuti.xiaomi.com/subject/1ba7f231-b557-4b3c-854a-18377b9fbc70" target="_blank">
+                                                        <h4 class="name">剑网3</h4>
+                                                        <p class="desc"> 剑网3定制主题 免费下载 </p>
+                                                        <p class="price">免费</p>
+                                                        <div class="figure figure-img">
+                                                            <img src="images/xmad_15078047291113_SunKC.png" alt="">
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://zhuti.xiaomi.com/detail/486b2c7c-9262-4089-9ad9-725a63c15e5c" target="_blank">
+                                                        <h4 class="name">初音未来</h4>
+                                                        <p class="desc"> 超可爱的miku主题来啦~ </p>
+                                                        <p class="price">6米币</p>
+                                                        <div class="figure figure-img">
+                                                            <img src="images/xmad_15078048061917_BPXjH.png" alt="">
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://zhuti.xiaomi.com/detail/49ad623b-21ca-4b5c-82d4-1003dd1501b4" target="_blank">
+                                                        <h4 class="name">几何</h4>
+                                                        <p class="desc">
+                                                            最新官方主题，带你感受极简视觉冲击
+                                                        </p>
+                                                        <p class="price">免费</p>
+                                                        <div class="figure figure-img">
+                                                            <img src="images/xmad_14982103643442_KCZrH.jpg" alt="">
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="http://zhuti.xiaomi.com/?from=mi" target="_blank">
+                                                        <p class="desc">众多个性主题、百变锁屏与自由桌面<br>让你的手机与众不同！</p>
+                                                        <a class="btn" href="javascript:">前往MIII主题市场</a>
+                                                        <div class="figure figure-img">
+                                                            <img src="images/more-miui.jpg" alt="">
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div class="arrow">
+                                                <a class="control control-prev-1 iconfont" href="javascript:">&#xe649;</a>
+                                                <a class='control control-next-1 iconfont' href="javascript:">&#xe63f;</a>
+                                            </div>
+                                        </div>
+                                        <div class="xm-pagers-wrapper">
+                                            <ul class="xm-pagers">
+                                                <li class="pager pager-active"><span class="dot"></span></li>
+                                                <li class="pager"><span class="dot"></span></li>
+                                                <li class="pager"><span class="dot"></span></li>
+                                                <li class="pager"><span class="dot"></span></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="content-item content-item-third">
+                                        <h2 class="title">游戏</h2>
+                                        <div id='GM' class="xm-carousel-wrapper-4" style="height: 340px; overflow: hidden;">
+                                            <ul class="item-list clear">
+                                                <li style="left:0">
+                                                    <a href="http://game.xiaomi.com/miyou/index.html" target="_blank">
+                                                        <h4 class="name">米柚手游模拟器</h4>
+                                                        <p class="desc"> 在电脑上玩遍小米所有手游 </p>
+                                                        <p class="price">免费</p>
+                                                        <div class="figure figure-img">
+                                                            <img src="images/T1czW_BXCv1R4cSCrK.png" alt="">
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:">
+                                                        <h4 class="name">剑侠世界</h4>
+                                                        <p class="desc"> 一生不容错过的浪漫武侠！！ </p>
+                                                        <p class="price">免费</p>
+                                                        <div class="figure figure-img">
+                                                            <img src="images/695c909b-f541-4575-bace-d08b6465025b.jpg" alt="">
+                                                        </div>
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="javascript:">
+                                                        <p class="desc">免费下载海量的手机游戏<br>天天都有现金福利赠送</p>
+                                                        <a class="btn" href="javascript:">前往小米游戏商店</a>
+                                                        <div class="figure figure-img">
+                                                            <img src="images/more-game.jpg" alt="">
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div class="arrow">
+                                                <a class="control control-prev-2 iconfont" href="javascript:">&#xe649;</a>
+                                                <a class='control control-next-2 iconfont' href="javascript:">&#xe63f;</a>
+                                            </div>
+                                        </div>
+                                        <div class="xm-pagers-wrapper">
+                                            <ul class="xm-pagers">
+                                                <li class="pager pager-active"><span class="dot"></span></li>
+                                                <li class="pager"><span class="dot"></span></li>
+                                                <li class="pager"><span class="dot"></span></li>
+
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="content-item content-item-fourth">
+                                        <h2 class="title">应用</h2>
+                                        <div id='app' class="xm-carousel-wrapper-5" style="height: 340px; overflow: hidden;">
+                                            <ul class="item-list clear">
+                                                <li style="left:0">
+                                                    <a href="http://app.mi.com/subject/169216" target="_blank">
+                                                        <h4 class="name">2017金米奖</h4>
+                                                        <p class="desc"> 最优秀的应用和游戏 </p>
+                                                        <p class="price">免费</p>
+                                                        <div class="figure figure-img">
+                                                            <img src="images/3332da7d-4056-4694-9548-c83b7b3af7d3.png" alt="">
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:">
+                                                        <h4 class="name">Forest</h4>
+                                                        <p class="desc"> 帮助您专心于生活中每个重要时刻 </p>
+                                                        <p class="price">免费</p>
+                                                        <div class="figure figure-img">
+                                                            <img src="images/T1TkKvBCKv1R4cSCrK.png" alt="">
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:">
+                                                        <h4 class="name">小米应用</h4>
+                                                        <p class="desc">
+                                                            小米出品 必属精品
+                                                        </p>
+                                                        <p class="price">免费</p>
+                                                        <div class="figure figure-img">
+                                                            <img src="images/T15VZvB5Kv1R4cSCrK.png" alt="">
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:">
+                                                        <p class="desc">帮助小米手机和其他安卓手机用户<br>发现好用的安卓应用</p>
+                                                        <a class='btn' href="javascript:">前往小米应用商店</a>
+                                                        <div class="figure figure-img">
+                                                            <img src="images/more-app.jpg" alt="">
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                            <div class="arrow">
+                                                <a class="control control-prev-3 iconfont" href="javascript:">&#xe649;</a>
+                                                <a class='control control-next-3 iconfont' href="javascript:">&#xe63f;</a>
+                                            </div>
+                                        </div>
+                                        <div class="xm-pagers-wrapper">
+                                            <ul class="xm-pagers">
+                                                <li class="pager pager-active"><span class="dot"></span></li>
+                                                <li class="pager"><span class="dot"></span></li>
+                                                <li class="pager"><span class="dot"></span></li>
+                                                <li class="pager"><span class="dot"></span></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--视频-->
+                    <div class="home-brick-row-5-box home-brick-box-1">
+                        <div class="video">
+                            <div class="box-hd">
+                                <h2 class="title">视频</h2>
+                                <div class="more ">
+                                    <a class="more-link" href="javascript:">
+                                查看全部
+                                <i class="iconfont rt">&#xe63f;</i>
+                            </a>
+                                </div>
+                            </div>
+                            <div class="box-bd">
+                                <ul class="video-list clear">
+                                    <li class="video-item">
+                                        <div class="figure figure-img">
+                                            <a href="javascript:">
+                                            <img src="images/xmad_15053784427187_fmBed.jpg" alt="">
+                                            <span class="play">
+                                                <img src="images/play.png" alt="">  
+                                            <i class="fa fa-play"></i>
+                                            </span>
+                                        </a>
+                                        </div>
+                                        <h3 class="title"><a href="javascript:">雷军与斯塔克打造全面屏2.0</a></h3>
+                                        <p class="desc">一场关于小米MIX 2 极致工艺的巅峰对话</p>
+                                    </li>
+                                    <li class="video-item">
+                                        <div class="figure figure-img">
+                                            <a href="javascript:">
+                                            <img src="images/xmad_15053796058409_uQmGq.jpg" alt="">
+                                            <span class="play">
+                                                <img src="images/play.png" alt="">
+                                                <i class="fa fa-play"></i>
+                                            </span>
+                                        </a>
+                                        </div>
+                                        <h3 class="title"><a href="javascript:">小米Note 3 与吴亦凡</a></h3>
+                                        <p class="desc">看看小米Note 3 与吴亦凡谁更帅？</p>
+                                    </li>
+                                    <li class="video-item">
+                                        <div class="figure figure-img">
+                                            <a href="javascript:">
+                                            <img src="images/xmad_15028039011215_UXSoK.jpg" alt="">
+                                            <span class="play">
+                                                <img src="images/play.png" alt="">  
+                                                <i class="fa fa-play"></i>
+                                            </span>
+                                        </a>
+                                        </div>
+                                        <h3 class="title"><a href="javascript:">MIUI 9 理念视频</a></h3>
+                                        <p class="desc">快如闪电，前所未有的流畅</p>
+                                    </li>
+                                    <li class="video-item">
+                                        <div class="figure figure-img">
+                                            <a href="javascript:">
+                                            <img src="images/xmad_15053796919952_QBfTR.jpg" alt="">
+                                            <span class="play">
+                                                <img src="images/play.png" alt="">
+                                                <i class="fa fa-play"></i>
+                                            </span>
+                                        </a>
+                                        </div>
+                                        <h3 class="title"><a href="javascript:">拍人更美的背后故事</a></h3>
+                                        <p class="desc">小米手机工程师采访视频</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--视频播放-->
+            <div class="modal">
+                <div class="modal-video ">
+                    <div class="modal-hd">
+                        <h3 class="title">大米之家里发生了一件怪事</h3>
+                        <a class="close" href="javascript:">&times;</a>
+                    </div>
+                    <div class="modal-bd">
+                        <video src="http://v.mifile.cn/b2c-mimall-media/9e43087a3ac5525a33982a2da2ba2cff.mp4" controls style="display: block;"></video>
+                        <video src="http://v.mifile.cn/b2c-mimall-media/d6f32c4087ec8a1466b72e58cdfa0625.mp4" controls></video>
+                        <video src="http://v.mifile.cn/b2c-mimall-media/079803c78170eaf692d936eba3978cc1.mp4" controls></video>
+                        <video src="http://v.mifile.cn/b2c-mimall-media/d0bf3d4892625ddb42836ff4d6d4af05.mp4" controls></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- 购买页 -->
+    <template id="buy">
+        <div class="buy">
+            <!-- 头部标题 -->
+            <div class="nav-title">
+                <div class="container header-title">
+                    <div class="fl header-title-left" v-text="name"></div>
+                    <div class="fr header-title-right">
+                        <a href="#">概述</a>
+                        <span class="separator">|</span>
+                        <a href="#">图集</a>
+                        <span class="separator">|</span>
+                        <a href="#">参数</a>
+                        <span class="separator">|</span>
+                        <a href="#" target="_blank">F码通道</a> <span class="separator">|</span>
+                        <a href="#">用户评价</a>
+                    </div>
+                </div>
+            </div>
+            <!-- 页面登录提示栏 -->
+            <div class="nav-login" v-show="!isLogin">
+                <div class="container">
+                    <span>为方便您的购买，请提前登录</span>
+                    <a href="#">立即登录</a>
+                    <i class="fa fa-close"></i>
+                </div>
+            </div>
+            <div class="show-product container clear">
+                <div class="slider-left fl ">
+                    <img :src="src" alt="小米Note 3" width="100%">
+                </div>
+                <div class="product-choose fl">
+                    <div class="pro-title" v-text="name"></div>
+                    <div class="activty" v-text="activities"></div>
+                    <div class="pro-describe" v-text="describe">
+                        
+                    </div>
+                    <div class="pro-price" v-text="value+'元'"></div>
+                    <div class="pro-gift">
+                        <ul>
+                            <li v-for="ite in gift">
+                                <span>赠品</span> {{ite}}
+                            </li>
+                           
+                        </ul>
+                    </div>
+                    <div class="address-box">
+                        <div class="user-default-address">                           
+                            <div>
+                                <i class="icon-map iconfont icon-ditu"></i>
+                                <div class="address-info">
+                                    <span class="item">北京</span>
+                                    <span class="item">北京市</span>
+                                    <span class="item">东城区</span>
+                                    <span class="item">永定门外街道</span>
+                                </div>
+                                <span style="color: #ff6700">修改</span>
+                                <span class="switch-choose-region"></span>
+                            </div>
+                            <div class="product-status">
+                                <span style="color:#ff6700">有现货</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pro-type clear" v-if="ishasvertion > 0">
+                        <h2>选择版本</h2>
+                        <ul>
+                            <li class="fl" v-for="ite,index in vertion" @click="chooseVertion(index)" >
+                                <span class="neicun" v-text="ite.type"></span>
+                                <span class="type-price fr">{{ite.price}}元起</span>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="pro-color clear" v-if="ishascolor > 0">
+                        <h2>选择颜色</h2>
+                        <ul>
+                            <li class="fl" v-for="ite,index in color" @click="chooseColor(index)">
+                                <span></span>
+                                <span class="fr" v-text="ite"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="safety">
+                        <div class="safe-title">
+                            <span>选择小米提供的意外险</span>
+                            <a href="#">了解意外险 ></a>
+                        </div>
+                        <div class="safe-choose clear">
+                            <span class="fl safe-select">
+                                <i class="fa fa-check"></i>
+                            </span>
+                            <img src="images/pms_1504852840.28243960.jpg?width=50&height=50" alt="" width="50px;" height="50px;" class="fl">
+                            <div class="fl">
+                                <h3><span v-text="name+' 意外险'"></span></h3>
+                                <p>手机以外损坏，一年内免费维修</p>
+                            </div>
+                            <span class="safe-price">249元</span>
+                        </div>
+
+                    </div>
+                    <div class="pro-list">
+                        <p>{{name}}  {{choosevertion}} {{choosecolor}} 
+                            <span class="pro-li-price fr">{{totalPrice}}元</span>
+                        </p>
+
+                        <p class="pro-li-total">总计　：<span >{{totalPrice}}元</span></p>
+                    </div>
+                    <button class="shop-bar-btn" @click="addtocar">加入购物车</button>
+                    <div class="tuikuan">
+                        <i class="fa fa-check-square gou"></i> 支持7天无理由退货
+                    </div>
+                </div>
+            </div>
+            <div class="product-detail">
+                <div class="container">
+                    <h2>包装清单</h2>
+                    <img :src="packageList" alt="" width="100%">
+                    <h2>小米承诺
+                        <span class="fr show-detail">
+                            查看详情
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </span>
+                    </h2>
+                    <img src="images/913dbcde8a3e02bded640b3cd12837a9.png" alt="" width="100%">
+                    <h2>官方微信</h2>
+                    <img src="images/1a84b2b629512205bf528aae91361efb.jpg" alt="" width="100%">
+                </div>
+            </div>
+        </div>
+    </template>
+
+
+    <script>
+        var Main = {
+            template: "#main",
+            data: function () {
+                return {
+                    starArr1: [],
+                    starArr2: [],
+                    contentArr01: [],
+                    contentArr02: [],
+                    contentArr03: [],
+                    contentArr04: [],
+                    contentArr11: [],
+                    contentArr12: [],
+                    contentArr13: [],
+                    contentArr14: [],
+                    contentArr15: [],
+                    contentArr21: [],
+                    contentArr22: [],
+                    contentArr23: [],
+                    contentArr24: [],
+                    contentArr31: [],
+                    contentArr32: [],
+                    contentArr33: [],
+                    contentArr34: [],
+                    contentArr41: [],
+                    contentArr42: [],
+                    contentArr43: [],
+                    contentArr44: [],
+                    contentArr45: [],
+                    contentData: []
+                }
+            },
+            created: function () {
+                window.onscroll = this.testscroll
+                this.$http.get('/getMainList').then(function (res) {
+                    //console.log('内容',res.data.contentData)
+                    this.starArr1 = res.data.starData.slice(0, 5)
+                    this.starArr2 = res.data.starData.slice(5)
+                    var starArr1 = this.starArr1
+                    var contentArr01 = this.contentArr01
+                    this.contentData = res.data.contentData   
+                    for (var i = 0; i < res.data.contentData.length; i++) {
+                        switch (res.data.contentData[i].type) {
+                            case "01":
+                                this.contentArr01.push(res.data.contentData[i])
+                                break;
+                            case "02":
+                                this.contentArr02.push(res.data.contentData[i])
+                                break;
+                            case "03":
+                                this.contentArr03.push(res.data.contentData[i])
+                                break;
+                            case "04":
+                                this.contentArr04.push(res.data.contentData[i])
+                                break;
+                            case "11":
+                                this.contentArr11.push(res.data.contentData[i])
+                                break;
+                            case "12":
+                                this.contentArr12.push(res.data.contentData[i])
+                                break;
+                            case "13":
+                                this.contentArr13.push(res.data.contentData[i])
+                                break;
+                            case "14":
+                                this.contentArr14.push(res.data.contentData[i])
+                                break;
+                            case "15":
+                                this.contentArr15.push(res.data.contentData[i])
+                                break;
+                            case "21":
+                                this.contentArr21.push(res.data.contentData[i])
+                                break;
+                            case "22":
+                                this.contentArr22.push(res.data.contentData[i])
+                                break;
+                            case "23":
+                                this.contentArr23.push(res.data.contentData[i])
+                                break;
+                            case "24":
+                                this.contentArr24.push(res.data.contentData[i])
+                                break;
+                            case "31":
+                                this.contentArr31.push(res.data.contentData[i])
+                                break;
+                            case "32":
+                                this.contentArr32.push(res.data.contentData[i])
+                                break;
+                            case "33":
+                                this.contentArr33.push(res.data.contentData[i])
+                                break;
+                            case "34":
+                                this.contentArr34.push(res.data.contentData[i])
+                                break;
+                            case "41":
+                                this.contentArr41.push(res.data.contentData[i])
+                                break;
+                            case "42":
+                                this.contentArr42.push(res.data.contentData[i])
+                                break;
+                            case "43":
+                                this.contentArr43.push(res.data.contentData[i])
+                                break;
+                            case "44":
+                                this.contentArr44.push(res.data.contentData[i])
+                                break;
+                            case "45":
+                                this.contentArr45.push(res.data.contentData[i])
+                                break;
+                            default:
+                            break;
+                        }
+                    }
+                    
+                    //console.log('内容数组-->', this.contentArr24)
+                })
+                console.log(this)
+            },
+            mounted: function() {
+               
+            },
+            methods: {
+                testscroll: function() {
+                    var height = document.body.scrollTop == 0 ? document.documentElement.scrollTop  
+                    : document.body.scrollTop
+                    console.log(height)
+                    // if(height>700&&height<=1410) {
+                    //     for (var i = 0; i < this.contentData.length; i++) {
+                    //         switch (this.contentData[i].type) {
+                    //             case "01":
+                    //                 this.contentArr01.push(this.contentData[i])
+                    //                 break;
+                    //             case "02":
+                    //                 this.contentArr02.push(this.contentData[i])
+                    //                 break;
+                    //             case "03":
+                    //                 this.contentArr03.push(this.contentData[i])
+                    //                 break;
+                    //             case "04":
+                    //                 this.contentArr04.push(this.contentData[i])
+                    //                 break;
+                    //             default:
+                    //             break;
+                    //         }
+                    //     }
+                    // }else if(height>1410&&height<=2110){
+                    //     for (var i = 0; i < this.contentData.length; i++) {
+                    //             switch (this.contentData[i].type) {
+                    //                 case "11":
+                    //                 this.contentArr11.push(this.contentData[i])
+                    //                 break;
+                    //             case "12":
+                    //                 this.contentArr12.push(this.contentData[i])
+                    //                 break;
+                    //             case "13":
+                    //                 this.contentArr13.push(this.contentData[i])
+                    //                 break;
+                    //             case "14":
+                    //                 this.contentArr14.push(this.contentData[i])
+                    //                 break;
+                    //             case "15":
+                    //                 this.contentArr15.push(this.contentData[i])
+                    //                 break;
+                    //                 default:
+                    //                 break;
+                    //             }
+                    //     }
+                    // }else if(height>2110&&height<=2810) {
+                    //     for (var i = 0; i < this.contentData.length; i++) {
+                    //         switch (this.contentData[i].type) {
+                    //             case "21":
+                    //             this.contentArr21.push(this.contentData[i])
+                    //                 break;
+                    //             case "22":
+                    //                 this.contentArr22.push(this.contentData[i])
+                    //                 break;
+                    //             case "23":
+                    //                 this.contentArr23.push(this.contentData[i])
+                    //                 break;
+                    //             case "24":
+                    //                 this.contentArr24.push(this.contentData[i])
+                    //                 break;
+                    //             default:
+                    //             break;
+                    //         }
+                    //     }
+                    // }else if(height>2810&&height<=3510) {
+                    //     for (var i = 0; i < this.contentData.length; i++) {
+                    //             switch (this.contentData[i].type) {
+                    //                 case "31":
+                    //                 this.contentArr31.push(this.contentData[i])
+                    //                 break;
+                    //                 case "32":
+                    //                     this.contentArr32.push(this.contentData[i])
+                    //                     break;
+                    //                 case "33":
+                    //                     this.contentArr33.push(this.contentData[i])
+                    //                     break;
+                    //                 case "34":
+                    //                     this.contentArr34.push(this.contentData[i])
+                    //                     break;
+                    //                 default:
+                    //                 break;
+                    //             }
+                    //     }
+                    // }else if(height>3510&&height<=4210) {
+                    //     for (var i = 0; i < this.contentData.length; i++) {
+                    //             switch (this.contentData[i].type) {
+                    //                 case "41":
+                    //                 this.contentArr41.push(this.contentData[i])
+                    //                 break;
+                    //             case "42":
+                    //                 this.contentArr42.push(this.contentData[i])
+                    //                 break;
+                    //             case "43":
+                    //                 this.contentArr43.push(this.contentData[i])
+                    //                 break;
+                    //             case "44":
+                    //                 this.contentArr44.push(this.contentData[i])
+                    //                 break;
+                    //             case "45":
+                    //                 this.contentArr45.push(this.contentData[i])
+                    //                 break;
+                    //                 default:
+                    //                 break;
+                    //             }
+                    //     }
+                    // }
+                }
+            }
+        }
+
+        var Buy = {
+            template: "#buy",
+            props: ['ite'],
+            data: function () {
+                return {
+                    shopCarObj: {shopCarArr:[]},
+                    otherPage: true,
+                    isLogin: false,
+                    item: null,
+                    name: '',
+                    srcLit: '',
+                    buy: '',
+                    type: '',
+                    describe: '',
+                    color: [],
+                    colorName: [],
+                    gift: [],
+                    packageList: '',
+                    price: {},
+                    buypic: [],
+                    activities: '',
+                    vertion: [],
+                    src: '',
+                    allChoose: '',
+                    value: 0,
+                    choosecolor: '',
+                    choosevertion: '',
+                    iscolor: false,
+                    isvertion: false,
+                    ishascolor: true,
+                    ishasvertion: true
+                }
+            },
+            beforeCreate: function() {
+                var name = sessionStorage.getItem('buyGoods')
+                var table = sessionStorage.getItem('table')
+                this.$http.get('/buyproduct',{
+                    params:{
+                        name: name,
+                        table: table
+                    }
+                }).then(function(res) {
+                    //console.log(res.body)
+                    this.item = res.body.data
+                    //console.log(this.item)
+                    this.name = res.body.data.name
+                    this.srcLit = res.body.data.src_lit
+                    this.buy = res.body.data.buy
+                    this.type = res.body.data.type
+                    this.describe = res.body.data.describe
+                    this.color = res.body.data.color
+                    this.colorName = res.body.data.colorName
+                    this.gift = res.body.data.gift
+                    this.packageList = res.body.data.packageList
+                    this.price = res.body.data.price
+                    this.buypic = res.body.data.buypic
+                    this.activities = res.body.data.activities
+                    this.vertion = res.body.data.vertion
+                    this.ishascolor = this.color.length
+                    this.ishasvertion = this.vertion.length
+                    this.src = res.body.data.src
+                    this.value = res.body.data.value
+                })
+            },
+            created: function () {
+                this.$emit('test', this.otherPage)
+                //console.log('obj',this.shopCarObj)
+                if(sessionStorage.getItem('isLogin') == 'true') {
+                    this.isLogin = true
+                    
+                }else {
+                    this.isLogin = false
+                   
+                }
+                if(this.isLogin) {
+                    this.$http.get('/shopcar',{
+                        params:{
+                            miID: sessionStorage.getItem('showName')
+                        }
+                    }).then(function(res) {
+                        //console.log(res.body.data)
+                        //console.log(res.body)
+                        this.shopCarObj.shopCarArr = res.body.data
+                        //console.log(this.shopCarObj)
+                    })
+                }else {
+                   var str = sessionStorage.getItem("shopCarStr")
+                   //console.log('shopcar',str)
+                   if(str === 'undefined' || str == null){
+                       return
+                   }else {
+                        this.shopCarObj = JSON.parse(str)
+                        //console.log(this.shopCarObj)
+                   }
+                }
+            },
+            mounted: function () {
+                //console.log('buyitem',this.item)
+            },
+            methods: {
+                show: function () {
+                    //console.log(111)
+                },
+                chooseColor:function(index) {
+                    $('.pro-color li').eq(index).addClass('boractive').siblings().removeClass('boractive')
+                    this.choosecolor = this.color[index]
+                    //console.log(this.choosecolor)
+                    this.iscolor = true
+                    //console.log(this.ishascolor,this.ishasvertion )
+                },
+                chooseVertion: function(index) {
+                    $('.pro-type li').eq(index).addClass('boractive').siblings().removeClass('boractive')
+                    this.choosevertion = this.vertion[index].type
+                    this.isvertion = true
+                    //console.log(this.choosevertion)
+                },
+                addtocar: function() {
+                    if(this.totalPrice === 0) {
+                        alert("请先选择商品")
+                        return
+                    }
+                    //console.log('isLogin',this.isLogin)
+                    //console.log('name',this.name)
+                    //console.log("choosecolor",this.choosecolor)
+                    //console.log('choosevertion',this.choosevertion)
+                    //console.log('price',this.totalPrice)
+                    var product = this.name + " " + this.choosevertion + " " + this.choosecolor
+                    var price = this.totalPrice
+                    var img = this.item.src_lit
+                    var arr = this.shopCarObj.shopCarArr
+                    var miID = sessionStorage.getItem('showName')
+                    if(this.isLogin) {
+                        this.$http.post('/addtocar',{
+                            "miID": miID, 
+                            "product": product,
+                            "price": price,
+                            "img": img,
+                            "num": 1
+                        }).then(function(res) {
+                            if(res.body.errno === 0) {
+                                //console.log(res.body.data)
+                                alert(res.body.msg)
+                            }
+                            if(this.shopCarObj.shopCarArr.length<=0) {
+                                this.shopCarObj.shopCarArr.push(res.body.data)
+                                var str = JSON.stringify(this.shopCarObj)
+                                sessionStorage.setItem("shopCarStr",str)
+                                this.$emit("obj",{"arr":this.shopCarObj.shopCarArr,"price":price})
+                            }else {
+                                var changenum = false
+                                for(var i=0;i<this.shopCarObj.shopCarArr.length;i++) {
+                                    if(this.shopCarObj.shopCarArr[i].product == res.body.data.product) {
+                                        this.shopCarObj.shopCarArr[i].num = res.body.data.num
+                                        changenum = true
+                                    }
+                                }
+                                if(changenum) {
+                                    this.shopCarObj.shoCarArr.push(res.body.data)
+                                }
+                                var str = JSON.stringify(this.shopCarObj)
+                                sessionStorage.setItem("shopCarStr",str)
+                                
+                                this.$emit("obj",{"arr":this.shopCarObj.shopCarArr,"price":price})
+                            }
+                        })
+                    }else {
+                        
+                        //console.log('arr',arr)
+                        if(arr.length === 0) {
+                            arr.push({
+                                    "product": product,
+                                    "price": price,
+                                    "img": img,
+                                    "num": 1
+                                })
+                                var str = JSON.stringify(this.shopCarObj)
+                                sessionStorage.setItem("shopCarStr",str)
+                                this.$emit("obj",{arr:arr,"price":price})
+                                return
+                        }else{
+                            //console.log('数组长度',arr.length)
+                            for(var i=0;i<arr.length;i++) {
+                            if(arr[i].product === product) {
+                                arr[i].num++
+                                //console.log(111)
+                            }else {
+                                //console.log(222)
+                                arr.push({
+                                    "product": product,
+                                    "price": price,
+                                    "img": img,
+                                    "num": 1
+                                })
+                                var str = JSON.stringify(this.shopCarObj)
+                                sessionStorage.setItem("shopCarStr",str)
+                                this.$emit("obj",{arr:arr,"price":price})
+                            }
+                            }
+                        }
+                        
+                        
+                    }
+                    //console.log('arr',this.shopCarObj.shopCarArr)
+                }
+            },
+            computed: {
+                totalPrice: function() {
+                    var type = this.choosevertion + '-'+this.choosecolor
+                    if((this.ishascolor >0) && (this.ishasvertion > 0)) {
+                        if(this.iscolor && this.isvertion) {
+                            //console.log('总价',this.price[type])
+                            return this.price[type]
+                        }else {
+                            return 0
+                        }
+                    }else if((this.ishascolor >0) && (this.ishasvertion == 0)) {
+                        if(this.iscolor) {
+                            type = this.choosecolor
+                            return this.price[type]
+                        }else {
+                            return 0
+                        }
+                    }else if((this.ishascolor == 0) && (this.ishasvertion > 0)){
+                        if(this.isvertion) {
+                            type = this.choosevertion
+                            return this.price[type]
+                        }else {
+                            return 0
+                        }
+                    }
+                    
+                }
+            },
+            watch: {
+                "ite": function(item) {
+                    //console.log('item',item)
+                    this.item = item
+                    //console.log(this.item)
+                    this.name = item.name
+                    this.srcLit = item.src_lit
+                    this.buy = item.buy
+                    this.type = item.type
+                    this.describe = item.describe
+                    this.color = item.color
+                    this.colorName = item.colorName
+                    this.gift = item.gift
+                    this.packageList = item.packageList
+                    this.price = item.price
+                    this.buypic = item.buypic
+                    this.activities = item.activities
+                    this.vertion = item.vertion
+                    this.ishascolor = this.color.length
+                    this.ishasvertion = this.vertion.length
+                    this.src = item.src
+                    this.value = item.value
+                    this.iscolor= false
+                    this.isvertion = false
+                    this.choosecolor = ''
+                    this.choosevertion = ''
+                    if(sessionStorage.getItem('isLogin') === 'true') {
+                        this.isLogin = true
+                    }else {
+                        this.isLogin = false
+                    }
+                    $('.pro-type li').removeClass('boractive')
+                    $('.pro-color li').removeClass('boractive')
+                }
+            }
+        }
+
+
+
+        var routes = [{
+            path: "/",
+            component: Main
+        }, {
+            path: "/buy",
+            component: Buy
+        }]
+        var router = new VueRouter({
+            routes
+        })
+        new Vue({
+            el: ".bigBox",
+            router: router,
+            data: {
+                item:null,
+                isLogin: false,
+                name: '',
+                otherPage: false,
+                arr0: [],
+                arr1: [],
+                arr2: [],
+                arr3: [],
+                arr4: [],
+                arr5: [],
+                arr6: [],
+                arr7: [],
+                arr8: [],
+                arr9: [],
+                topArr0: [],
+                topArr1: [],
+                topArr2: [],
+                topArr3: [],
+                topArr4: [],
+                topArr5: [],
+                topArr6: [],
+                starArr: [],
+                hasproduct: false,
+                shopCarList:[],
+                allproduct:0,
+                allprice:0
+            },
+            computed: {
+                shopcarstr: function() {
+                    var str = sessionStorage.getItem("shopCarStr")
+                    return str
+                }
+            },
+            methods: {
+                add: function(obj) {
+                    this.shopCarList = obj.arr
+                    this.allproduct += 1
+                    this.allprice += obj.price
+                    console.log("shopCarList-->",this.shopCarList)
+                    console.log("obj--->",obj.arr)
+                },
+                handle: function (msg) {
+                    this.otherPage = msg
+                },
+                outerLogin: function() {
+                    this.isLogin = false
+                    sessionStorage.removeItem('isLogin')
+                    sessionStorage.removeItem('showName')
+                },
+                getMsg: function(item,table) {
+                    //console.log(item)
+                    this.item = item
+                    console.log(table)
+                    //console.log(item)
+                    sessionStorage.setItem('buyGoods',item.name)
+                    sessionStorage.setItem('table',table)
+                    
+                }
+            },
+            beforeCreate: function () {
+                this.$http.get('/getList').then(function (res) {
+                    //console.log("数据",res.body)
+                    //console.log('明星产品',res.body.starData)
+                    //console.log("数组一",starArr1)
+                    //console.log("数组二",starArr2)
+                    for (var i = 0; i < res.body.data.length; i++) {
+                        switch (res.body.data[i].type) {
+                            case "00":
+                                this.arr0.push(res.body.data[i])
+                                break;
+                            case "01":
+                                this.arr1.push(res.body.data[i])
+                                break;
+                            case "02":
+                                this.arr2.push(res.body.data[i])
+                                break;
+                            case "03":
+                                this.arr3.push(res.body.data[i])
+                                break;
+                            case "04":
+                                this.arr4.push(res.body.data[i])
+                                break;
+                            case "05":
+                                this.arr5.push(res.body.data[i])
+                                break;
+                            case "06":
+                                this.arr6.push(res.body.data[i])
+                                break;
+                            case "07":
+                                this.arr7.push(res.body.data[i])
+                                break;
+                            case "08":
+                                this.arr8.push(res.body.data[i])
+                                break;
+                            case "09":
+                                this.arr9.push(res.body.data[i])
+                                break;
+
+                            default:
+
+                        }
+                    }
+                    for (var j = 0; j < res.body.topData.length; j++) {
+                        switch (res.body.topData[j].type) {
+                            case "00":
+                                this.topArr0.push(res.body.topData[j])
+                                break;
+                            case "01":
+                                this.topArr1.push(res.body.topData[j])
+                                break;
+                            case "02":
+                                this.topArr2.push(res.body.topData[j])
+                                break;
+                            case "03":
+                                this.topArr3.push(res.body.topData[j])
+                                break;
+                            case "04":
+                                this.topArr4.push(res.body.topData[j])
+                                break;
+                            case "05":
+                                this.topArr5.push(res.body.topData[j])
+                                break;
+                            case "06":
+                                this.topArr6.push(res.body.topData[j])
+                                break;
+                            default:
+                        }
+                    }
+                    //console.log("循环",this.arr0)
+                })
+            },
+            created: function () {
+                this.otherPage = false
+                if(sessionStorage.getItem('isLogin') === 'true') {
+                    this.isLogin = true
+                }else {
+                    this.isLogin = false
+                }
+                this.name = sessionStorage.getItem('showName')
+// 购物车
+                var str = sessionStorage.getItem("shopCarStr")
+                //this.shopcarstr = str
+                if(this.isLogin) {
+                    this.$http.get('/shopcar',{
+                        params:{
+                            miID: sessionStorage.getItem('showName')
+                        }
+                    }).then(function(res) {
+                        //console.log(res.body.data)
+                        console.log(res.body)
+                        this.shopCarList = res.body.data
+                        console.log("主页",this.shopCarList)
+                        if(this.shopCarList.length<=0) {
+                            this.hasproduct = false
+                        }else {
+                            this.hasproduct = true
+                        }
+                        for(var i=0;i<this.shopCarList.length;i++) {
+                            this.allproduct += this.shopCarList[i].num
+                            this.allprice += this.shopCarList[i].num *  this.shopCarList[i].price
+                        }
+                    })
+                }else {
+                    if(!str) {
+                        this.hasproduct = false
+                    }else {
+                        this.hasproduct = true
+                        //console.log('str',str)
+                        var obj = JSON.parse(str)
+                        this.shopCarList = obj.shopCarArr
+                        for(var i=0;i<this.shopCarList.length;i++) {
+                            this.allproduct += this.shopCarList[i].num
+                            this.allprice += this.shopCarList[i].num *  this.shopCarList[i].price
+                        }
+                    }
+                }
+            },
+            watch: {
+                "$route": function (to, from) {
+                    console.log("to-->", to)
+                    if (to.path == '/') {
+                        this.otherPage = false
+                        //console.log('otherpage', this.otherPage)
+                    } else {
+                        this.otherPage = true
+                        //console.log('otherpage', this.otherPage)
+                    }
+                },
+                "shopcarstr": function(str) {
+                    console.log("str",str)
+                    var obj = JSON.parse(str)
+                    //this.shopcarList = obj.shoCarArr
+                }
+            }
+
+        })
+    </script>
+    <script src="js/index.js"></script>
+
+
+</body>
+
+</html>
